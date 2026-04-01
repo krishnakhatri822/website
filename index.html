@@ -3,360 +3,455 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Krishna Khatri — Business Development & AI Sales Strategist</title>
+<title>Krishna Khatri — I help teams adopt AI and actually use it.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
 <style>
   :root {
-    --black: #1a1a2e;
-    --off-white: #fdf6f0;
-    --cream: #f5f0fb;
-    --accent: #CE1F6A;
-    --accent-warm: #FF0063;
-    --accent-green: #beaee2;
-    --text-muted: #7a6b74;
-    --border: rgba(26,26,46,0.1);
-    --card-bg: #ffffff;
+    --pink:    #FF0063;
+    --rose:    #CE1F6A;
+    --lavender:#beaee2;
+    --navy:    #1a1a2e;
+    --navy2:   #16213e;
+    --cream:   #fdf6f0;
+    --cream2:  #f5f0fb;
+    --muted:   #7a6b74;
+    --border:  rgba(26,26,46,0.1);
+    --white:   #ffffff;
   }
  
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
  
   body {
-    background: var(--off-white);
-    color: var(--black);
+    background: var(--cream);
+    color: var(--navy);
     font-family: 'Poppins', sans-serif;
     font-size: 16px;
     line-height: 1.6;
     overflow-x: hidden;
   }
  
-  /* ── NAV ── */
+  /* ─── CURSOR DOT ─── */
+  .cursor {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--pink); position: fixed; pointer-events: none;
+    z-index: 9999; transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+    mix-blend-mode: multiply;
+  }
+ 
+  /* ─── NAV ─── */
   nav {
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 20px 48px;
-    background: rgba(253,246,240,0.88);
-    backdrop-filter: blur(12px);
+    padding: 18px 56px;
+    background: rgba(253,246,240,0.92);
+    backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
-    transition: padding 0.3s ease;
+    transition: padding 0.35s ease, box-shadow 0.35s ease;
   }
-  nav.scrolled { padding: 14px 48px; }
+  nav.scrolled {
+    padding: 12px 56px;
+    box-shadow: 0 4px 24px rgba(26,26,46,0.07);
+  }
   .nav-logo {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em;
-    color: var(--black); text-decoration: none;
-    display: flex; align-items: center; gap: 10px;
+    display: flex; align-items: center; gap: 12px;
+    text-decoration: none; color: var(--navy);
+    font-weight: 700; font-size: 1rem; letter-spacing: -0.01em;
   }
   .nav-photo {
-    width: 40px; height: 40px; border-radius: 50%;
-    object-fit: cover; border: 2px solid var(--accent-warm); flex-shrink: 0;
+    width: 38px; height: 38px; border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--pink);
+    transition: border-color 0.2s, transform 0.3s;
   }
-  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-logo:hover .nav-photo { transform: scale(1.08); border-color: var(--rose); }
+  .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
   .nav-links a {
-    text-decoration: none; color: var(--black);
-    font-size: 0.875rem; font-weight: 500; letter-spacing: 0.02em;
-    opacity: 0.65; transition: opacity 0.2s;
+    text-decoration: none; color: var(--navy);
+    font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
+    opacity: 0.5; transition: opacity 0.2s, color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
+    height: 2px; background: var(--pink);
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.25s ease;
   }
   .nav-links a:hover { opacity: 1; }
+  .nav-links a:hover::after { transform: scaleX(1); }
   .nav-cta {
-    background: var(--black); color: var(--off-white) !important;
-    opacity: 1 !important; padding: 8px 20px; border-radius: 100px;
-    font-weight: 500 !important; transition: background 0.2s !important;
+    background: var(--navy) !important; color: var(--cream) !important;
+    opacity: 1 !important; padding: 9px 22px; border-radius: 100px;
+    font-weight: 600 !important; letter-spacing: 0.02em !important;
+    transition: background 0.2s !important;
   }
-  .nav-cta:hover { background: var(--accent-warm) !important; }
+  .nav-cta::after { display: none !important; }
+  .nav-cta:hover { background: var(--pink) !important; opacity: 1 !important; }
  
-  /* ── HERO ── */
+  /* ─── HERO ─── */
   .hero {
     min-height: 100vh;
-    display: grid; grid-template-columns: 1fr 1fr;
-    align-items: center; padding: 120px 48px 80px; gap: 48px;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 140px 56px 80px;
     position: relative; overflow: hidden;
   }
-  .hero::before {
-    content: ''; position: absolute; top: -20%; right: -10%;
-    width: 700px; height: 700px;
-    background: radial-gradient(circle, rgba(190,174,226,0.18) 0%, transparent 70%);
-    pointer-events: none;
+  /* animated gradient orbs */
+  .hero-orb {
+    position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px);
   }
-  .hero-eyebrow {
+  .orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(255,0,99,0.12), transparent 70%);
+    top: -100px; right: -80px;
+    animation: orbFloat 8s ease-in-out infinite;
+  }
+  .orb-2 {
+    width: 360px; height: 360px;
+    background: radial-gradient(circle, rgba(190,174,226,0.2), transparent 70%);
+    bottom: 0; left: -60px;
+    animation: orbFloat 10s ease-in-out infinite reverse;
+  }
+  @keyframes orbFloat {
+    0%, 100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-30px) scale(1.05); }
+  }
+ 
+  .hero-tag {
     display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 20px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 28px;
     opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards;
   }
-  .eyebrow-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
-  .hero h1 {
-    font-family: 'Poppins', sans-serif;
-    font-size: clamp(3.2rem, 5.5vw, 5.5rem);
-    font-weight: 800; line-height: 1.0; letter-spacing: -0.03em;
-    margin-bottom: 24px;
-    opacity: 0; animation: fadeUp 0.7s 0.2s ease forwards;
+  .hero-tag-dot {
+    width: 7px; height: 7px; border-radius: 50%; background: var(--pink);
+    animation: pulse 2s ease-in-out infinite;
   }
-  .hero h1 .line-2 { color: var(--accent); }
-  .hero-desc {
-    font-size: 1.05rem; color: var(--text-muted);
-    max-width: 480px; line-height: 1.75; margin-bottom: 40px;
+  @keyframes pulse {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(255,0,99,0.5); }
+    50% { box-shadow: 0 0 0 8px rgba(255,0,99,0); }
+  }
+ 
+  .hero h1 {
+    font-size: clamp(3rem, 6.5vw, 6.5rem);
+    font-weight: 900; line-height: 0.95; letter-spacing: -0.04em;
+    max-width: 900px; margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
+  }
+  .hero h1 em {
+    font-style: normal; color: var(--pink);
+    position: relative; display: inline-block;
+  }
+  .hero h1 em::after {
+    content: ''; position: absolute;
+    left: 0; bottom: 4px; width: 100%; height: 6px;
+    background: var(--lavender); opacity: 0.5; border-radius: 3px;
+    z-index: -1;
+  }
+ 
+  .hero-sub {
+    font-size: 1.15rem; color: var(--muted); max-width: 560px;
+    line-height: 1.8; margin-bottom: 48px; font-weight: 400;
     opacity: 0; animation: fadeUp 0.7s 0.35s ease forwards;
   }
+  .hero-sub strong { color: var(--navy); font-weight: 600; }
+ 
   .hero-actions {
     display: flex; gap: 16px; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.7s 0.45s ease forwards;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: var(--black); color: var(--off-white);
-    padding: 14px 28px; border-radius: 100px;
-    font-weight: 500; font-size: 0.95rem; text-decoration: none;
-    transition: background 0.2s, transform 0.2s;
-  }
-  .btn-primary:hover { background: var(--accent-warm); transform: translateY(-2px); }
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px;
-    border: 1.5px solid var(--black); color: var(--black);
-    padding: 14px 28px; border-radius: 100px;
-    font-weight: 500; font-size: 0.95rem; text-decoration: none;
-    transition: all 0.2s;
-  }
-  .btn-secondary:hover { background: var(--black); color: var(--off-white); transform: translateY(-2px); }
- 
-  /* Hero right — stat cards */
-  .hero-right {
-    display: flex; flex-direction: column; gap: 20px;
     opacity: 0; animation: fadeUp 0.7s 0.5s ease forwards;
   }
-  .stat-card {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 28px 32px;
-    display: flex; align-items: center; gap: 24px;
-    transition: transform 0.25s, box-shadow 0.25s;
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 32px; border-radius: 100px;
+    font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    letter-spacing: 0.01em; transition: all 0.25s;
   }
-  .stat-card:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(206,31,106,0.08); }
-  .stat-icon {
-    width: 52px; height: 52px; border-radius: 14px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem; flex-shrink: 0;
-  }
-  .stat-icon.blue  { background: rgba(190,174,226,0.25); }
-  .stat-icon.orange{ background: rgba(255,0,99,0.1); }
-  .stat-icon.green { background: rgba(190,174,226,0.2); }
-  .stat-number {
-    font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 800;
-    line-height: 1; letter-spacing: -0.02em;
-  }
-  .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 2px; }
-  .hero-right-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .btn-dark { background: var(--navy); color: var(--cream); }
+  .btn-dark:hover { background: var(--rose); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(206,31,106,0.25); }
+  .btn-outline { border: 2px solid var(--navy); color: var(--navy); }
+  .btn-outline:hover { background: var(--navy); color: var(--cream); transform: translateY(-3px); }
  
-  /* ── MARQUEE ── */
+  .hero-scroll-hint {
+    position: absolute; bottom: 40px; left: 56px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--muted); opacity: 0.6;
+    opacity: 0; animation: fadeUp 0.7s 0.9s ease forwards;
+  }
+  .scroll-line {
+    width: 40px; height: 1px; background: var(--muted);
+    position: relative; overflow: hidden;
+  }
+  .scroll-line::after {
+    content: ''; position: absolute;
+    top: 0; left: -100%; width: 100%; height: 100%;
+    background: var(--pink);
+    animation: scrollLine 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollLine {
+    0% { left: -100%; } 100% { left: 100%; }
+  }
+ 
+  /* ─── SECTION BASE ─── */
+  section { padding: 110px 56px; position: relative; }
+  .section-eyebrow {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 28px; height: 2px; background: var(--pink); border-radius: 2px;
+  }
+  .section-h {
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
+    margin-bottom: 20px;
+  }
+  .section-lead {
+    font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.8; margin-bottom: 64px;
+  }
+ 
+  /* ─── PROBLEM SECTION ─── */
+  .problem-section { background: var(--navy); color: var(--cream); }
+  .problem-section .section-eyebrow { color: var(--lavender); }
+  .problem-section .section-eyebrow::before { background: var(--lavender); }
+  .problem-section .section-h { color: var(--cream); }
+  .problem-section .section-lead { color: rgba(253,246,240,0.6); max-width: 100%; }
+ 
+  .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 2px; margin-top: 56px;
+    border-radius: 20px; overflow: hidden;
+  }
+  .problem-card {
+    padding: 44px 36px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .problem-card::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--pink), var(--rose));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .problem-card:hover { background: rgba(255,255,255,0.07); }
+  .problem-card:hover::before { transform: scaleX(1); }
+  .problem-num {
+    font-size: 3.5rem; font-weight: 900; letter-spacing: -0.06em;
+    color: rgba(255,255,255,0.06); line-height: 1; margin-bottom: 16px;
+  }
+  .problem-card h3 {
+    font-size: 1.05rem; font-weight: 700; color: var(--cream);
+    margin-bottom: 12px; line-height: 1.3;
+  }
+  .problem-card p {
+    font-size: 0.9rem; color: rgba(253,246,240,0.55); line-height: 1.75;
+  }
+ 
+  /* ─── HOW I WORK ─── */
+  .how-section { background: var(--cream2); }
+  .process-steps {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; position: relative; margin-top: 56px;
+  }
+  .process-steps::before {
+    content: ''; position: absolute;
+    top: 52px; left: 12.5%; right: 12.5%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--lavender), var(--pink), var(--rose), var(--lavender));
+    z-index: 0;
+  }
+  .step {
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 0 24px; position: relative; z-index: 1;
+  }
+  .step-circle {
+    width: 104px; height: 104px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2rem; margin-bottom: 28px;
+    border: 2px solid var(--border);
+    background: var(--white);
+    transition: transform 0.35s, box-shadow 0.35s, border-color 0.3s;
+  }
+  .step:hover .step-circle {
+    transform: translateY(-8px) scale(1.05);
+    box-shadow: 0 20px 40px rgba(255,0,99,0.15);
+    border-color: var(--pink);
+  }
+  .step-num {
+    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--pink); margin-bottom: 10px;
+  }
+  .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
+  .step p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
+ 
+  /* ─── PROOF / WINS ─── */
+  .proof-section { background: var(--white); }
+  .proof-grid {
+    display: grid; grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px; margin-top: 56px;
+  }
+  .proof-card {
+    border-radius: 24px; padding: 40px 36px;
+    border: 1px solid var(--border);
+    background: var(--cream);
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .proof-card::after {
+    content: ''; position: absolute;
+    bottom: 0; left: 0; right: 0; height: 4px;
+    background: linear-gradient(90deg, var(--pink), var(--rose));
+    transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s ease;
+  }
+  .proof-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 56px rgba(206,31,106,0.1);
+    border-color: rgba(206,31,106,0.2);
+  }
+  .proof-card:hover::after { transform: scaleX(1); }
+  .proof-tag {
+    display: inline-block; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--rose); background: rgba(206,31,106,0.08);
+    padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
+  }
+  .proof-stat {
+    font-size: 3rem; font-weight: 900; letter-spacing: -0.05em;
+    color: var(--navy); line-height: 1; margin-bottom: 8px;
+  }
+  .proof-stat span { color: var(--pink); }
+  .proof-card h3 {
+    font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; line-height: 1.3;
+  }
+  .proof-card p {
+    font-size: 0.9rem; color: var(--muted); line-height: 1.75;
+  }
+ 
+  /* ─── WHAT EXCITES ME ─── */
+  .excites-section { background: var(--cream); }
+  .excites-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 24px; margin-top: 56px;
+  }
+  .excite-card {
+    padding: 36px 32px; border-radius: 20px;
+    border: 1px solid var(--border); background: var(--white);
+    display: flex; gap: 24px; align-items: flex-start;
+    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+  }
+  .excite-card:hover {
+    border-color: var(--lavender);
+    box-shadow: 0 12px 36px rgba(190,174,226,0.2);
+    transform: translateY(-4px);
+  }
+  .excite-icon {
+    width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    background: linear-gradient(135deg, rgba(255,0,99,0.08), rgba(190,174,226,0.15));
+  }
+  .excite-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .excite-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+ 
+  /* ─── NUMBERS ─── */
+  .numbers-section {
+    background: var(--navy);
+    color: var(--cream);
+  }
+  .numbers-section .section-eyebrow { color: var(--lavender); }
+  .numbers-section .section-eyebrow::before { background: var(--lavender); }
+  .numbers-section .section-h { color: var(--cream); }
+  .numbers-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 1px; background: rgba(255,255,255,0.06);
+    border-radius: 20px; overflow: hidden; margin-top: 56px;
+  }
+  .number-card {
+    padding: 48px 36px; background: var(--navy2);
+    text-align: center;
+    transition: background 0.3s;
+  }
+  .number-card:hover { background: rgba(255,0,99,0.08); }
+  .big-n {
+    font-size: 3.5rem; font-weight: 900; letter-spacing: -0.06em;
+    line-height: 1; margin-bottom: 12px;
+    background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .big-n em {
+    font-style: normal;
+    background: linear-gradient(135deg, var(--pink), var(--rose));
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .number-card p {
+    font-size: 0.85rem; color: rgba(253,246,240,0.5); line-height: 1.5;
+  }
+ 
+  /* ─── MARQUEE ─── */
   .marquee-wrap {
-    overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
-    padding: 16px 0; background: var(--black);
+    overflow: hidden; padding: 18px 0;
+    background: var(--pink);
+    border-top: none; border-bottom: none;
   }
   .marquee-track {
-    display: flex; gap: 48px; width: max-content;
-    animation: marquee 18s linear infinite;
+    display: flex; gap: 0; width: max-content;
+    animation: marquee 22s linear infinite;
   }
   .marquee-item {
-    font-family: 'Poppins', sans-serif; font-size: 0.8rem; font-weight: 600;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--off-white);
-    white-space: nowrap; opacity: 0.7;
+    font-size: 0.78rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: white; white-space: nowrap; padding: 0 32px;
+    opacity: 0.85;
   }
-  .marquee-sep { color: var(--accent); opacity: 1 !important; }
+  .marquee-sep { opacity: 1 !important; padding: 0 8px; }
  
-  /* ── ABOUT ── */
-  .section { padding: 100px 48px; }
-  .section-label {
-    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--accent); margin-bottom: 16px;
-  }
-  .section-title {
-    font-family: 'Poppins', sans-serif; font-size: clamp(2rem, 3.5vw, 3rem);
-    font-weight: 800; letter-spacing: -0.025em; line-height: 1.1; margin-bottom: 24px;
-  }
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 64px; align-items: start; margin-top: 56px;
-  }
-  .about-text p {
-    font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 20px;
-  }
-  .about-text p strong { color: var(--black); font-weight: 500; }
-  .about-text p em { color: var(--accent); font-style: normal; font-weight: 500; }
-  .about-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
-  .badge {
-    padding: 6px 16px; border-radius: 100px;
-    font-size: 0.8rem; font-weight: 500; border: 1.5px solid var(--border);
-    background: white; color: var(--black); transition: all 0.2s;
-  }
-  .badge:hover { border-color: var(--accent); color: var(--accent); }
-  .about-right { display: flex; flex-direction: column; gap: 16px; }
-  .highlight-card {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 16px; padding: 24px 28px;
-    display: flex; align-items: flex-start; gap: 16px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .highlight-card:hover { border-color: rgba(206,31,106,0.3); box-shadow: 0 8px 32px rgba(206,31,106,0.07); }
-  .highlight-card .hc-icon { font-size: 1.4rem; margin-top: 2px; }
-  .highlight-card h4 {
-    font-family: 'Poppins', sans-serif; font-size: 1rem; font-weight: 700; margin-bottom: 4px;
-  }
-  .highlight-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
- 
-  /* ── EXPERIENCE ── */
-  .experience-section { background: var(--black); color: var(--off-white); padding: 100px 48px; }
-  .experience-section .section-label { color: rgba(253,246,240,0.4); }
-  .experience-section .section-title { color: var(--off-white); }
- 
-  .timeline { margin-top: 56px; position: relative; }
-  .timeline::before {
-    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
-    width: 1px; background: rgba(253,246,240,0.12);
-  }
-  .timeline-item { padding-left: 36px; padding-bottom: 56px; position: relative; }
-  .timeline-item::before {
-    content: ''; position: absolute; left: -5px; top: 6px;
-    width: 11px; height: 11px; border-radius: 50%;
-    background: var(--accent); border: 2px solid var(--black);
-    box-shadow: 0 0 0 3px rgba(206,31,106,0.25);
-  }
-  .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .timeline-company {
-    font-family: 'Poppins', sans-serif; font-size: 1.25rem;
-    font-weight: 700; color: var(--off-white); margin-bottom: 2px;
-  }
-  .timeline-role { font-size: 0.9rem; color: rgba(253,246,240,0.5); margin-bottom: 12px; }
-  .timeline-date {
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
-    color: var(--accent); white-space: nowrap;
-    background: rgba(206,31,106,0.12); padding: 4px 12px; border-radius: 100px;
-    align-self: flex-start;
-  }
-  .timeline-wins { list-style: none; margin-top: 12px; }
-  .timeline-wins li {
-    font-size: 0.93rem; color: rgba(253,246,240,0.72); line-height: 1.6;
-    padding: 6px 0; display: flex; gap: 10px; align-items: flex-start;
-  }
-  .win-dot { color: var(--accent); flex-shrink: 0; margin-top: 1px; }
-  .win-highlight {
-    display: inline-block; font-family: 'Poppins', sans-serif; font-weight: 700;
-    color: var(--off-white); font-size: 1rem;
-    background: rgba(255,0,99,0.18); padding: 2px 8px; border-radius: 6px; margin-right: 4px;
-  }
- 
-  /* ── SKILLS ── */
-  .skills-section { padding: 100px 48px; }
-  .skills-grid {
-    display: grid; grid-template-columns: repeat(3, 1fr);
-    gap: 24px; margin-top: 56px;
-  }
-  .skill-group {
-    background: var(--card-bg); border: 1px solid var(--border);
-    border-radius: 20px; padding: 32px 28px;
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .skill-group:hover { transform: translateY(-4px); box-shadow: 0 20px 48px rgba(206,31,106,0.07); }
-  .skill-group-icon { font-size: 2rem; margin-bottom: 16px; }
-  .skill-group h3 {
-    font-family: 'Poppins', sans-serif; font-size: 1.05rem; font-weight: 700; margin-bottom: 16px;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-tag {
-    font-size: 0.78rem; font-weight: 500; padding: 5px 12px;
-    border-radius: 100px; border: 1px solid var(--border);
-    color: var(--text-muted); background: var(--off-white);
-  }
-  .skill-tag.hot {
-    background: rgba(190,174,226,0.25);
-    border-color: rgba(190,174,226,0.6);
-    color: #8b5cf6;
-  }
- 
-  /* ── IMPACT ── */
-  .impact-section { background: var(--cream); padding: 100px 48px; }
-  .impact-grid {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 24px; margin-top: 56px;
-  }
-  .impact-card {
-    text-align: center; padding: 40px 24px;
-    background: white; border-radius: 20px; border: 1px solid var(--border);
-    transition: transform 0.25s, box-shadow 0.25s;
-  }
-  .impact-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(206,31,106,0.08); }
-  .impact-card .big-num {
-    font-family: 'Poppins', sans-serif; font-size: 3rem;
-    font-weight: 800; letter-spacing: -0.04em; color: var(--black);
-    line-height: 1; margin-bottom: 8px;
-  }
-  .impact-card .big-num span { color: var(--accent-warm); }
-  .impact-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
- 
-  /* ── EDUCATION & AWARDS ── */
-  .edu-section { padding: 100px 48px; }
-  .edu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 56px; }
-  .edu-card {
-    background: white; border: 1px solid var(--border); border-radius: 20px; padding: 32px 28px;
-    transition: border-color 0.2s, box-shadow 0.2s;
-  }
-  .edu-card:hover { border-color: rgba(190,174,226,0.6); box-shadow: 0 8px 32px rgba(190,174,226,0.15); }
-  .edu-card .edu-year {
-    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.08em;
-    color: var(--accent); text-transform: uppercase; margin-bottom: 10px;
-  }
-  .edu-card h3 { font-family: 'Poppins', sans-serif; font-size: 1.1rem; font-weight: 700; margin-bottom: 4px; }
-  .edu-card p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; }
-  .award-list { list-style: none; margin-top: 12px; }
-  .award-list li {
-    font-size: 0.88rem; color: var(--text-muted); padding: 5px 0;
-    display: flex; gap: 8px; align-items: flex-start;
-  }
-  .award-list li::before { content: '🏆'; font-size: 0.85rem; flex-shrink: 0; }
- 
-  /* ── CONTACT ── */
+  /* ─── CONTACT ─── */
   .contact-section {
-    background: #FF0063; color: var(--off-white);
-    padding: 100px 48px; text-align: center;
+    background: var(--pink); color: white;
+    text-align: center; padding: 120px 56px;
   }
-  .contact-section .section-title { color: var(--off-white); font-size: clamp(2.5rem, 5vw, 4rem); }
-  .contact-section p {
-    font-size: 1.05rem; color: rgba(255,255,255,0.8);
-    max-width: 500px; margin: 20px auto 48px; line-height: 1.75;
+  .contact-section .section-eyebrow { color: rgba(255,255,255,0.7); justify-content: center; }
+  .contact-section .section-eyebrow::before { background: rgba(255,255,255,0.5); }
+  .contact-h {
+    font-size: clamp(2.8rem, 5.5vw, 5rem);
+    font-weight: 900; letter-spacing: -0.04em; line-height: 1;
+    color: white; margin-bottom: 24px;
   }
-  .contact-links {
-    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 48px;
+  .contact-sub {
+    font-size: 1.1rem; color: rgba(255,255,255,0.75);
+    max-width: 480px; margin: 0 auto 56px; line-height: 1.75;
   }
-  .contact-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 24px; border-radius: 100px;
-    font-weight: 500; font-size: 0.9rem; text-decoration: none;
-    transition: all 0.2s;
+  .contact-btns {
+    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+    margin-bottom: 48px;
   }
-  .contact-link.primary {
-    background: #1a1a2e; color: white;
-  }
-  .contact-link.primary:hover { background: #0d0d1a; transform: translateY(-2px); }
-  .contact-link.outline {
-    border: 1.5px solid rgba(255,255,255,0.5); color: white;
-  }
-  .contact-link.outline:hover { border-color: white; background: rgba(255,255,255,0.15); transform: translateY(-2px); }
-  .contact-email {
-    font-size: 0.85rem; color: rgba(255,255,255,0.6); letter-spacing: 0.03em;
+  .btn-white { background: white; color: var(--pink); font-weight: 700; }
+  .btn-white:hover { background: var(--navy); color: white; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,26,46,0.3); }
+  .btn-ghost { border: 2px solid rgba(255,255,255,0.5); color: white; }
+  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+  .contact-note {
+    font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
   }
  
-  /* ── FOOTER ── */
+  /* ─── FOOTER ─── */
   footer {
-    padding: 32px 48px; background: #FF0063;
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background: var(--pink); padding: 28px 56px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex; flex-direction: column; align-items: center;
     gap: 6px; text-align: center;
-    border-top: none;
   }
-  footer span { font-size: 0.8rem; color: rgba(255,255,255,0.75); }
+  footer span { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
  
-  /* ── ANIMATIONS ── */
+  /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
+    from { opacity: 0; transform: translateY(28px); }
     to   { opacity: 1; transform: translateY(0); }
   }
   @keyframes marquee {
@@ -365,31 +460,45 @@
   }
   .reveal {
     opacity: 1; transform: translateY(0);
-    transition: opacity 0.65s ease, transform 0.65s ease;
+    transition: opacity 0.7s ease, transform 0.7s ease;
   }
+  .js-reveal { opacity: 0; transform: translateY(32px); }
   .reveal.visible { opacity: 1; transform: translateY(0); }
-  .js-reveal { opacity: 0; transform: translateY(28px); }
  
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    nav { padding: 16px 24px; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; padding: 100px 24px 60px; }
-    .hero-right { display: none; }
-    .section, .experience-section, .skills-section, .impact-section, .edu-section, .contact-section { padding: 72px 24px; }
-    .about-grid { grid-template-columns: 1fr; gap: 40px; }
-    .skills-grid { grid-template-columns: 1fr 1fr; }
-    .impact-grid { grid-template-columns: 1fr 1fr; }
-    .edu-grid { grid-template-columns: 1fr; }
-    footer { padding: 20px 24px; }
+  /* stagger children */
+  .stagger > * { transition-delay: calc(var(--i, 0) * 80ms); }
+ 
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 1024px) {
+    .proof-grid { grid-template-columns: 1fr 1fr; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
+    .process-steps::before { display: none; }
   }
-  @media (max-width: 540px) {
-    .skills-grid { grid-template-columns: 1fr; }
-    .impact-grid { grid-template-columns: 1fr 1fr; }
+  @media (max-width: 768px) {
+    nav { padding: 14px 24px; }
+    nav.scrolled { padding: 10px 24px; }
+    .nav-links { display: none; }
+    section { padding: 80px 24px; }
+    .hero { padding: 120px 24px 60px; }
+    .hero h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
+    .problem-grid { grid-template-columns: 1fr; }
+    .proof-grid { grid-template-columns: 1fr; }
+    .excites-grid { grid-template-columns: 1fr; }
+    .numbers-grid { grid-template-columns: 1fr 1fr; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .hero-scroll-hint { display: none; }
+    footer { padding: 24px; }
+  }
+  @media (max-width: 480px) {
+    .numbers-grid { grid-template-columns: 1fr; }
+    .process-steps { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
+ 
+<div class="cursor" id="cursor"></div>
  
 <!-- NAV -->
 <nav id="navbar">
@@ -1082,65 +1191,45 @@ k7leIiFQiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiA//9k=" alt="Krishna K
     <span>Krishna Khatri</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#impact">Impact</a></li>
-    <li><a href="#contact" class="nav-cta">Contact</a></li>
+    <li><a href="#problem">The Problem</a></li>
+    <li><a href="#how">How I Work</a></li>
+    <li><a href="#proof">Proof</a></li>
+    <li><a href="#numbers">Numbers</a></li>
+    <li><a href="#contact" class="nav-cta">Say Hello</a></li>
   </ul>
 </nav>
  
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-left">
-    <div class="hero-eyebrow">
-      <span class="eyebrow-dot"></span>
-      Business Development · AI Sales &amp; GTM · Ahmedabad, India
-    </div>
-    <h1>
-      Krishna<br>
-      <span class="line-2">Khatri.</span>
-    </h1>
-    <p class="hero-desc">
-      I'm someone who gets excited about the gap between where a business is and where it could be — and I find my way into that gap through conversation, curiosity, and a genuine love for technology. I work across enterprise and mid-market accounts in the US, Europe, and India.
-    </p>
-    <div class="hero-actions">
-      <a href="#experience" class="btn-primary">See My Work ↓</a>
-      <a href="/cdn-cgi/l/email-protection#107b78716462797b627963787e7128222250777d71797c3e737f7d" class="btn-secondary">Get in Touch</a>
-    </div>
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+ 
+  <div class="hero-tag">
+    <span class="hero-tag-dot"></span>
+    Business Development · AI Adoption · Higher Education
   </div>
  
-  <div class="hero-right">
-    <div class="stat-card">
-      <div class="stat-icon orange">💰</div>
-      <div>
-        <div class="stat-number">$114K+</div>
-        <div class="stat-label">Closed deals · Exceeding targets every quarter</div>
-      </div>
-    </div>
-    <div class="hero-right-row">
-      <div class="stat-card">
-        <div class="stat-icon blue">📈</div>
-        <div>
-          <div class="stat-number">$485K+</div>
-          <div class="stat-label">Sales pipeline built across US &amp; Europe</div>
-        </div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-icon green">🤝</div>
-        <div>
-          <div class="stat-number">3+</div>
-          <div class="stat-label">Years in B2B tech &amp; AI sales</div>
-        </div>
-      </div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-icon blue">🤖</div>
-      <div>
-        <div class="stat-number">3+</div>
-        <div class="stat-label">Industries served with AI-powered POCs as lead magnets</div>
-      </div>
-    </div>
+  <h1>
+    I help teams<br>
+    <em>actually use</em><br>
+    the AI they buy.
+  </h1>
+ 
+  <p class="hero-sub">
+    Most companies purchase AI tools and then watch them sit unused.
+    I'm the person who bridges that gap —
+    <strong>building trust with stakeholders, running live demos that change minds,</strong>
+    and staying involved until adoption is real.
+  </p>
+ 
+  <div class="hero-actions">
+    <a href="#proof" class="btn btn-dark">See What I've Done →</a>
+    <a href="mailto:khatrikrishna822@gmail.com" class="btn btn-outline">Get in Touch</a>
+  </div>
+ 
+  <div class="hero-scroll-hint">
+    <span class="scroll-line"></span>
+    Scroll to explore
   </div>
 </section>
  
@@ -1148,275 +1237,187 @@ k7leIiFQiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiA//9k=" alt="Krishna K
 <div class="marquee-wrap">
   <div class="marquee-track">
     <span class="marquee-item">AI Adoption</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">GTM Strategy</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Enterprise Sales</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Stakeholder Engagement</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">BANT · MEDDIC</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">B2B &amp; B2C</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Google Workspace</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Gemini</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Higher Education</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Change Management</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">AI POCs</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Cross-team Collaboration</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Enterprise Sales</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Quantifiable Value</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Stakeholder Engagement</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">AI POC Development</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">B2B Sales</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">AI Adoption</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">GTM Strategy</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Enterprise Sales</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Stakeholder Engagement</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">BANT · MEDDIC</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">B2B &amp; B2C</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Google Workspace</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Gemini</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Higher Education</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Change Management</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">AI POCs</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Cross-team Collaboration</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Enterprise Sales</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Quantifiable Value</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Stakeholder Engagement</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">AI POC Development</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">B2B Sales</span><span class="marquee-item marquee-sep">✦</span>
   </div>
 </div>
  
-<!-- ABOUT -->
-<section class="section" id="about">
+<!-- THE PROBLEM -->
+<section class="problem-section" id="problem">
   <div class="reveal">
-    <div class="section-label">About Me</div>
-    <h2 class="section-title">I get people excited about what technology<br>can actually do for their business.</h2>
+    <div class="section-eyebrow">The Reality</div>
+    <h2 class="section-h">Most AI projects fail<br>before they begin.</h2>
+    <p class="section-lead">
+      It's not a technology problem. It's a people problem. And that's exactly the kind of problem I love solving.
+    </p>
   </div>
-  <div class="about-grid">
-    <div class="about-text reveal">
-      <p>
-        My background is a bit unusual — I studied <strong>Computer Engineering</strong>, then fell in love with sales. That combination means I can sit in a room with a CTO and actually understand what they're worried about, then walk into a boardroom and explain why that matters commercially.
-      </p>
-      <p>
-        At <strong>IndiaNIC Infotech</strong>, I started building AI prototypes not because it was in my job description, but because I realised that showing beats telling. Those POCs became some of my best lead magnets — and helped me close <strong>$114K+ in deals</strong> while growing a <strong>$485K+ pipeline</strong> across the US and Europe.
-      </p>
-      <p>
-        I care a lot about what happens <em>after</em> the sale. Smooth onboarding, real adoption, actual value delivered — that's what makes a deal worth closing. I approach every conversation less like a pitch and more like a discovery.
-      </p>
-      <div class="about-badges">
-        <span class="badge">AI Sales</span>
-        <span class="badge">Google Workspace</span>
-        <span class="badge">Gemini</span>
-        <span class="badge">Higher Education</span>
-        <span class="badge">Enterprise GTM</span>
-        <span class="badge">MEDDIC</span>
-        <span class="badge">Change Management</span>
+  <div class="problem-grid stagger reveal">
+    <div class="problem-card" style="--i:0">
+      <div class="problem-num">01</div>
+      <h3>They buy the tool. Nobody uses it.</h3>
+      <p>Leaders sign contracts, IT deploys the software, and three months later the dashboards show 8% adoption. The technology wasn't the issue — nobody made it real for the people who needed to use it.</p>
+    </div>
+    <div class="problem-card" style="--i:1">
+      <div class="problem-num">02</div>
+      <h3>The sales pitch stops at the demo.</h3>
+      <p>A slick presentation wins the deal. Then the vendor disappears. I stay involved through onboarding, through the first difficult quarter, until the client can point to real outcomes they care about.</p>
+    </div>
+    <div class="problem-card" style="--i:2">
+      <div class="problem-num">03</div>
+      <h3>The right people never see what AI can do.</h3>
+      <p>Decisions get made by committees who've only read about AI, never seen it work on their actual data. I build live proof-of-concepts — tailored to each client — that turn skeptics into champions.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- HOW I WORK -->
+<section class="how-section" id="how">
+  <div class="reveal">
+    <div class="section-eyebrow">My Approach</div>
+    <h2 class="section-h">I work the way<br>Google expects sellers to work.</h2>
+    <p class="section-lead">
+      Own the outcome. Move fast. Build trust that outlasts the contract.
+    </p>
+  </div>
+  <div class="process-steps stagger reveal">
+    <div class="step" style="--i:0">
+      <div class="step-circle">🔍</div>
+      <div class="step-num">Step 01</div>
+      <h3>Discover</h3>
+      <p>I listen more than I talk. I find the real problem behind the stated problem — and map the decision-making structure before saying a word about solutions.</p>
+    </div>
+    <div class="step" style="--i:1">
+      <div class="step-circle">⚡</div>
+      <div class="step-num">Step 02</div>
+      <h3>Show, Don't Tell</h3>
+      <p>I build a working AI demo using the client's own context. Not a generic slide deck — something they can actually see working on their problems, in their language.</p>
+    </div>
+    <div class="step" style="--i:2">
+      <div class="step-circle">🤝</div>
+      <div class="step-num">Step 03</div>
+      <h3>Close with Conviction</h3>
+      <p>I close deals by making the value undeniable, not by pressuring. I've used this approach to close $114K+ in deals while building a $485K+ pipeline.</p>
+    </div>
+    <div class="step" style="--i:3">
+      <div class="step-circle">🚀</div>
+      <div class="step-num">Step 04</div>
+      <h3>Drive Adoption</h3>
+      <p>I stay involved after the signature. I train users, run feedback cycles, and track real adoption metrics — because a deal that doesn't get used isn't really a win.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- PROOF -->
+<section class="proof-section" id="proof">
+  <div class="reveal">
+    <div class="section-eyebrow">Real Wins</div>
+    <h2 class="section-h">Three moments<br>that define how I work.</h2>
+    <p class="section-lead">
+      Not highlights from a resume. The actual stories behind the numbers.
+    </p>
+  </div>
+  <div class="proof-grid stagger reveal">
+    <div class="proof-card" style="--i:0">
+      <span class="proof-tag">AI Adoption</span>
+      <div class="proof-stat"><span>3+</span></div>
+      <h3>I built AI demos that nobody asked me to build — and they became our best sales tool.</h3>
+      <p>At IndiaNIC, I noticed prospects were curious about AI but couldn't picture it in their world. So I started building custom proof-of-concepts before any meeting — tailored to each client's industry. Those demos converted skeptical leads into qualified pipelines across healthcare, education, and logistics.</p>
+    </div>
+    <div class="proof-card" style="--i:1">
+      <span class="proof-tag">Enterprise Deals</span>
+      <div class="proof-stat">$<span>114</span>K+</div>
+      <h3>Closed deals across the US and Europe without ever meeting a single client in person.</h3>
+      <p>Every relationship was built through video calls, live demos, and consistent follow-through. I learned to read the room remotely — to identify who the real decision-maker was, what they were afraid of, and what would make them feel confident enough to sign.</p>
+    </div>
+    <div class="proof-card" style="--i:2">
+      <span class="proof-tag">Higher Education</span>
+      <div class="proof-stat"><span>100</span>%</div>
+      <h3>Every client we onboarded actually adopted the technology. Every single one.</h3>
+      <p>That 100% onboarding rate didn't happen by accident. It happened because I built feedback loops from day one, ran training sessions with end users, and stayed involved long after most salespeople would have moved on. The deal only feels real when the client is getting value.</p>
+    </div>
+  </div>
+</section>
+ 
+<!-- WHAT EXCITES ME -->
+<section class="excites-section" id="excites">
+  <div class="reveal">
+    <div class="section-eyebrow">What Drives Me</div>
+    <h2 class="section-h">The kind of work<br>I show up early for.</h2>
+    <p class="section-lead">
+      I'm not looking for just any sales role. Here's what genuinely gets me fired up.
+    </p>
+  </div>
+  <div class="excites-grid stagger reveal">
+    <div class="excite-card" style="--i:0">
+      <div class="excite-icon">🎓</div>
+      <div>
+        <h3>Selling into Higher Education</h3>
+        <p>Universities are complex, consensus-driven, and slow to change — which makes it incredibly satisfying when you get them moving. I understand how academic institutions make decisions and who the real stakeholders are.</p>
       </div>
     </div>
-    <div class="about-right reveal">
-      <div class="highlight-card">
-        <span class="hc-icon">🎯</span>
-        <div>
-          <h4>Consultative Seller</h4>
-          <p>Runs structured discovery to uncover stakeholder needs and transform them into tailored digital solutions, not generic pitches.</p>
-        </div>
+    <div class="excite-card" style="--i:1">
+      <div class="excite-icon">🤖</div>
+      <div>
+        <h3>Making AI Adoption Actually Happen</h3>
+        <p>Anyone can sell a license. I want to be the person who makes sure it gets used — who runs the training, synthesizes the feedback, and helps shape the product roadmap based on what real users need.</p>
       </div>
-      <div class="highlight-card">
-        <span class="hc-icon">🤖</span>
-        <div>
-          <h4>AI Adoption Champion</h4>
-          <p>Deployed AI POCs as lead magnets across 3+ industries. Educates prospects on new technology to generate extraordinary business value.</p>
-        </div>
+    </div>
+    <div class="excite-card" style="--i:2">
+      <div class="excite-icon">🌍</div>
+      <div>
+        <h3>Working Across Cultures and Markets</h3>
+        <p>I've closed deals with clients in the US, UK, Europe, and India. I adapt quickly. I listen carefully. And I've learned that trust-building looks different in every market — and that's a skill, not a challenge.</p>
       </div>
-      <div class="highlight-card">
-        <span class="hc-icon">📊</span>
-        <div>
-          <h4>Results-Driven GTM Executor</h4>
-          <p>Implemented GTM programs for strategic prospecting that drove incremental outcomes — exceeding targets every quarter.</p>
-        </div>
-      </div>
-      <div class="highlight-card">
-        <span class="hc-icon">🔁</span>
-        <div>
-          <h4>Customer Success Focus</h4>
-          <p>Built feedback cycles for committed deliverables, ensuring smooth onboarding and influencing retention and long-term partnerships.</p>
-        </div>
+    </div>
+    <div class="excite-card" style="--i:3">
+      <div class="excite-icon">⚡</div>
+      <div>
+        <h3>Moving Fast Inside Complex Organizations</h3>
+        <p>I thrive in environments where things are moving quickly and the playbook is still being written. I don't wait for instructions — I figure out what needs to happen and I make it happen.</p>
       </div>
     </div>
   </div>
 </section>
  
-<!-- EXPERIENCE -->
-<section class="experience-section" id="experience">
+<!-- NUMBERS -->
+<section class="numbers-section" id="numbers">
   <div class="reveal">
-    <div class="section-label">Work Experience</div>
-    <h2 class="section-title" style="color:var(--off-white)">Three years of showing up,<br>&amp; driving AI adoption.</h2>
+    <div class="section-eyebrow">By The Numbers</div>
+    <h2 class="section-h" style="color:var(--cream)">The outcomes<br>speak for themselves.</h2>
   </div>
- 
-  <div class="timeline">
- 
-    <div class="timeline-item reveal">
-      <div class="timeline-header">
-        <div>
-          <div class="timeline-company">IndiaNIC Infotech Limited</div>
-          <div class="timeline-role">Business Development Executive — Ahmedabad, India</div>
-        </div>
-        <span class="timeline-date">May 2024 – Present</span>
-      </div>
-      <ul class="timeline-wins">
-        <li><span class="win-dot">→</span><span>Deployed <strong>AI-powered POCs</strong> across 3+ industries, leveraged as lead magnets to convert demos into qualified pipelines.</span></li>
-        <li><span class="win-dot">→</span><span>Closed <span class="win-highlight">$114K+</span> in deals &amp; built a <span class="win-highlight">$485K+</span> sales pipeline across US and Europe — exceeding targets every quarter.</span></li>
-        <li><span class="win-dot">→</span><span>Implemented innovative GTM programs for strategic prospecting, driving incremental outreach outcomes.</span></li>
-        <li><span class="win-dot">→</span><span>Educated leads on new technology &amp; AI adoption to generate extraordinary business value for enterprise clients.</span></li>
-        <li><span class="win-dot">→</span><span>Created a proprietary showcasing method for visualizing end-product value as part of the pre-sales process.</span></li>
-        <li><span class="win-dot">→</span><span>Initiated feedback cycles for committed deliveries to influence customer success and retention.</span></li>
-      </ul>
+  <div class="numbers-grid stagger reveal">
+    <div class="number-card" style="--i:0">
+      <div class="big-n">$<em>114</em>K+</div>
+      <p>Closed in deals across US &amp; European markets — exceeding targets every quarter</p>
     </div>
- 
-    <div class="timeline-item reveal">
-      <div class="timeline-header">
-        <div>
-          <div class="timeline-company">HASHTECHY</div>
-          <div class="timeline-role">Business Development — Ahmedabad, India</div>
-        </div>
-        <span class="timeline-date">Dec 2023 – May 2024</span>
-      </div>
-      <ul class="timeline-wins">
-        <li><span class="win-dot">→</span><span>Led outbound lead generation across multiple platforms, driving top-of-funnel growth.</span></li>
-        <li><span class="win-dot">→</span><span>Initiated prospect relationships and acquired a <strong>long-term partnership deal</strong> independently.</span></li>
-        <li><span class="win-dot">→</span><span>Executed GTM campaigns for ICP targeting across B2B and B2C segments.</span></li>
-      </ul>
+    <div class="number-card" style="--i:1">
+      <div class="big-n">$<em>485</em>K+</div>
+      <p>Active pipeline built from scratch through outbound and AI-led demos</p>
     </div>
- 
-    <div class="timeline-item reveal">
-      <div class="timeline-header">
-        <div>
-          <div class="timeline-company">VGD Technologies</div>
-          <div class="timeline-role">Business Development — Ahmedabad, India</div>
-        </div>
-        <span class="timeline-date">Nov 2022 – Dec 2023</span>
-      </div>
-      <ul class="timeline-wins">
-        <li><span class="win-dot">→</span><span>Signed and closed <span class="win-highlight">4 major deals</span> worth <span class="win-highlight">$70K+</span> USD with hyper-personalized solution pitches.</span></li>
-        <li><span class="win-dot">→</span><span>Achieved <strong>100% smooth onboarding</strong>, ensuring new technology adoption post-sale.</span></li>
-        <li><span class="win-dot">→</span><span>Managed end-to-end account coordination, ensuring cross-functional alignment between sales commitments and delivery outcomes.</span></li>
-      </ul>
+    <div class="number-card" style="--i:2">
+      <div class="big-n"><em>100</em>%</div>
+      <p>Technology adoption rate across all onboarded clients — zero churned in the first year</p>
     </div>
- 
-  </div>
-</section>
- 
-<!-- IMPACT NUMBERS -->
-<section class="impact-section" id="impact">
-  <div class="reveal">
-    <div class="section-label">By The Numbers</div>
-    <h2 class="section-title">Numbers don't lie,<br>but they don't tell everything.</h2>
-  </div>
-  <div class="impact-grid">
-    <div class="impact-card reveal">
-      <div class="big-num">$<span>114</span>K+</div>
-      <p>Closed in deals across US &amp; European markets</p>
-    </div>
-    <div class="impact-card reveal">
-      <div class="big-num">$<span>485</span>K+</div>
-      <p>Active sales pipeline built from scratch</p>
-    </div>
-    <div class="impact-card reveal">
-      <div class="big-num"><span>100</span>%</div>
-      <p>Smooth onboarding &amp; technology adoption rate</p>
-    </div>
-    <div class="impact-card reveal">
-      <div class="big-num"><span>3</span>+</div>
-      <p>Industries served with AI POC-led sales motion</p>
-    </div>
-  </div>
-</section>
- 
-<!-- SKILLS -->
-<section class="skills-section" id="skills">
-  <div class="reveal">
-    <div class="section-label">Skills &amp; Capabilities</div>
-    <h2 class="section-title">What I actually<br>know how to do.</h2>
-  </div>
-  <div class="skills-grid">
-    <div class="skill-group reveal">
-      <div class="skill-group-icon">🤖</div>
-      <h3>AI &amp; Technology</h3>
-      <div class="skill-tags">
-        <span class="skill-tag hot">AI Adoption</span>
-        <span class="skill-tag hot">Gemini / Google AI</span>
-        <span class="skill-tag hot">AI POC Development</span>
-        <span class="skill-tag">Machine Learning Concepts</span>
-        <span class="skill-tag">Google Workspace</span>
-        <span class="skill-tag">Tech Change Management</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-icon">📈</div>
-      <h3>Sales &amp; GTM</h3>
-      <div class="skill-tags">
-        <span class="skill-tag hot">Enterprise Sales</span>
-        <span class="skill-tag hot">GTM Strategy</span>
-        <span class="skill-tag hot">BANT / MEDDIC</span>
-        <span class="skill-tag">Pipeline Management</span>
-        <span class="skill-tag">Outbound Prospecting</span>
-        <span class="skill-tag">Pre-Sales &amp; Demo</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-icon">🤝</div>
-      <h3>Stakeholder &amp; Accounts</h3>
-      <div class="skill-tags">
-        <span class="skill-tag hot">Stakeholder Engagement</span>
-        <span class="skill-tag hot">C-Suite Presentations</span>
-        <span class="skill-tag">B2B &amp; B2C</span>
-        <span class="skill-tag">Account Management</span>
-        <span class="skill-tag">Cross-team Collaboration</span>
-        <span class="skill-tag">Customer Success</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-icon">🎓</div>
-      <h3>Education Sector</h3>
-      <div class="skill-tags">
-        <span class="skill-tag hot">Higher Education GTM</span>
-        <span class="skill-tag hot">University Stakeholders</span>
-        <span class="skill-tag">Training Facilitation</span>
-        <span class="skill-tag">Institutional Decision-Making</span>
-        <span class="skill-tag">Sector Enabler Identification</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-icon">💬</div>
-      <h3>Communication &amp; Consulting</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">Consultative Discovery</span>
-        <span class="skill-tag">Solution Positioning</span>
-        <span class="skill-tag">Written Communication</span>
-        <span class="skill-tag">Executive Presence</span>
-        <span class="skill-tag">Feedback Synthesis</span>
-      </div>
-    </div>
-    <div class="skill-group reveal">
-      <div class="skill-group-icon">🛠️</div>
-      <h3>Technical Foundation</h3>
-      <div class="skill-tags">
-        <span class="skill-tag">B.Tech Computer Engineering</span>
-        <span class="skill-tag">Data Structures</span>
-        <span class="skill-tag">Algorithms</span>
-        <span class="skill-tag">Software Engineering</span>
-        <span class="skill-tag">Web Development</span>
-      </div>
-    </div>
-  </div>
-</section>
- 
-<!-- EDUCATION & AWARDS -->
-<section class="edu-section" id="education">
-  <div class="reveal">
-    <div class="section-label">Education &amp; Recognition</div>
-    <h2 class="section-title">Where it all<br>started.</h2>
-  </div>
-  <div class="edu-grid">
-    <div class="edu-card reveal">
-      <div class="edu-year">2019 – 2022</div>
-      <h3>B.Tech in Computer Engineering</h3>
-      <p style="margin-bottom:8px;">U. V. Patel College of Engineering, Mehsana · CGPA 7.2/10</p>
-      <p>Core coursework: Data Structures, Algorithms, AI, Database Systems, Software Engineering, Computer Architecture.</p>
-    </div>
-    <div class="edu-card reveal">
-      <div class="edu-year">Recognition</div>
-      <h3>Awards &amp; Scholarships</h3>
-      <ul class="award-list">
-        <li>Winner — HackMerced VII (Major Hacking League) · Most Creative Use of Twilio API out of 260 participants</li>
-        <li>Coordinator, Organizer &amp; Problem Setter — Annual Technical/Coding Fest</li>
-        <li>Tuition Fee Waiver Scheme Scholarship — Diploma in Computer Engineering (selected from 120 students)</li>
-        <li>MYSY Scholarship — Outstanding academic record for B.Tech</li>
-      </ul>
+    <div class="number-card" style="--i:3">
+      <div class="big-n"><em>3</em>+</div>
+      <p>Years in B2B tech &amp; AI sales, across 3 companies and multiple industries</p>
     </div>
   </div>
 </section>
@@ -1424,28 +1425,68 @@ k7leIiFQiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiA//9k=" alt="Krishna K
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="reveal">
-    <h2 class="section-title">Say hello. I don't bite.</h2>
-    <p>I'm actively looking for the next chapter. If something on this page caught your eye, send me a message — I reply to every one.</p>
-  </div>
-  <div class="contact-links reveal">
-    <a href="mailto:khatrikrishna822@gmail.com" class="contact-link primary">✉ Email Me</a>
-    <a href="https://www.linkedin.com/in/krishna-khatri-0298a41b6/" target="_blank" class="contact-link outline">LinkedIn</a>
-    <a href="https://github.com/krishnakhatri822" target="_blank" class="contact-link outline">GitHub</a>
+    <div class="section-eyebrow">Let's Talk</div>
+    <h2 class="contact-h">Ready when you are.</h2>
+    <p class="contact-sub">
+      I'm actively looking for the right next step. If you're building a sales team that takes AI adoption seriously — let's talk.
+    </p>
+    <div class="contact-btns">
+      <a href="mailto:khatrikrishna822@gmail.com" class="btn btn-white">✉ Email Me</a>
+      <a href="https://www.linkedin.com/in/krishna-khatri-0298a41b6/" target="_blank" class="btn btn-ghost">LinkedIn</a>
+      <a href="https://github.com/krishnakhatri822" target="_blank" class="btn btn-ghost">GitHub</a>
+    </div>
+    <p class="contact-note">Ahmedabad, India · Open to remote &amp; relocation</p>
   </div>
 </section>
  
 <!-- FOOTER -->
 <footer>
   <span>© 2026 Krishna M. Khatri</span>
-  <span>Business Development Executive, AI Sales &amp; GTM Strategist · Built from scratch with <span style="filter: brightness(0) invert(1); display:inline-block;">❤️</span></span>
+  <span>Business Development Executive · AI Adoption · Built from scratch with <span style="filter:brightness(10);display:inline-block;">❤️</span></span>
 </footer>
  
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
+  // Custom cursor
+  const cursor = document.getElementById('cursor');
+  document.addEventListener('mousemove', e => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => {
+      cursor.style.width = '28px'; cursor.style.height = '28px'; cursor.style.opacity = '0.5';
+    });
+    el.addEventListener('mouseleave', () => {
+      cursor.style.width = '10px'; cursor.style.height = '10px'; cursor.style.opacity = '1';
+    });
+  });
+ 
   // Sticky nav
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => {
     navbar.classList.toggle('scrolled', window.scrollY > 40);
   });
  
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.rev
+  // Scroll reveal with stagger
+  const reveals = document.querySelectorAll('.reveal');
+  reveals.forEach(el => el.classList.add('js-reveal'));
+ 
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.classList.remove('js-reveal');
+        el.classList.add('visible');
+        // stagger children if any
+        el.querySelectorAll('[style*="--i"]').forEach((child, i) => {
+          child.style.transitionDelay = (i * 100) + 'ms';
+        });
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+ 
+  reveals.forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

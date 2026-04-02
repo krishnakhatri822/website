@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Krishna Khatri — I help teams adopt AI and actually use it.</title>
+<title>Krishna Khatri — I help teams actually use the AI they buy.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400&display=swap" rel="stylesheet">
@@ -20,10 +20,8 @@
     --border:  rgba(26,26,46,0.1);
     --white:   #ffffff;
   }
- 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
- 
   body {
     background: var(--cream);
     color: var(--navy);
@@ -33,12 +31,12 @@
     overflow-x: hidden;
   }
  
-  /* ─── CURSOR DOT ─── */
+  /* ─── CURSOR ─── */
   .cursor {
     width: 10px; height: 10px; border-radius: 50%;
     background: var(--pink); position: fixed; pointer-events: none;
-    z-index: 9999; transform: translate(-50%, -50%);
-    transition: transform 0.1s, width 0.3s, height 0.3s, opacity 0.3s;
+    z-index: 9999; transform: translate(-50%,-50%);
+    transition: width .3s, height .3s, opacity .3s;
     mix-blend-mode: multiply;
   }
  
@@ -47,15 +45,12 @@
     position: fixed; top: 0; left: 0; right: 0; z-index: 100;
     display: flex; align-items: center; justify-content: space-between;
     padding: 18px 56px;
-    background: rgba(253,246,240,0.92);
-    backdrop-filter: blur(16px);
+    background: rgba(253,246,240,0.93);
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
-    transition: padding 0.35s ease, box-shadow 0.35s ease;
+    transition: padding .35s ease, box-shadow .35s ease;
   }
-  nav.scrolled {
-    padding: 12px 56px;
-    box-shadow: 0 4px 24px rgba(26,26,46,0.07);
-  }
+  nav.scrolled { padding: 12px 56px; box-shadow: 0 4px 32px rgba(26,26,46,0.08); }
   .nav-logo {
     display: flex; align-items: center; gap: 12px;
     text-decoration: none; color: var(--navy);
@@ -63,23 +58,21 @@
   }
   .nav-photo {
     width: 38px; height: 38px; border-radius: 50%;
-    object-fit: cover;
-    border: 2px solid var(--pink);
-    transition: border-color 0.2s, transform 0.3s;
+    object-fit: cover; border: 2.5px solid var(--pink);
+    transition: transform .3s, border-color .2s;
+    box-shadow: 0 0 0 4px rgba(255,0,99,0.1);
   }
   .nav-logo:hover .nav-photo { transform: scale(1.08); border-color: var(--rose); }
   .nav-links { display: flex; gap: 36px; list-style: none; align-items: center; }
   .nav-links a {
     text-decoration: none; color: var(--navy);
     font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase;
-    opacity: 0.5; transition: opacity 0.2s, color 0.2s;
-    position: relative;
+    opacity: 0.5; transition: opacity .2s; position: relative;
   }
   .nav-links a::after {
     content: ''; position: absolute; bottom: -3px; left: 0; right: 0;
     height: 2px; background: var(--pink);
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.25s ease;
+    transform: scaleX(0); transform-origin: left; transition: transform .25s ease;
   }
   .nav-links a:hover { opacity: 1; }
   .nav-links a:hover::after { transform: scaleX(1); }
@@ -87,10 +80,44 @@
     background: var(--navy) !important; color: var(--cream) !important;
     opacity: 1 !important; padding: 9px 22px; border-radius: 100px;
     font-weight: 600 !important; letter-spacing: 0.02em !important;
-    transition: background 0.2s !important;
+    transition: background .2s !important;
   }
   .nav-cta::after { display: none !important; }
-  .nav-cta:hover { background: var(--pink) !important; opacity: 1 !important; }
+  .nav-cta:hover { background: var(--pink) !important; }
+ 
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 15px 32px; border-radius: 100px;
+    font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    letter-spacing: 0.01em; transition: all .25s;
+    font-family: 'Poppins', sans-serif;
+  }
+  .btn-dark { background: var(--navy); color: var(--cream); }
+  .btn-dark:hover { background: var(--rose); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(206,31,106,.3); }
+  .btn-outline { border: 2px solid var(--navy); color: var(--navy); }
+  .btn-outline:hover { background: var(--navy); color: var(--cream); transform: translateY(-3px); }
+  .btn-white { background: white; color: var(--pink); font-weight: 700; }
+  .btn-white:hover { background: var(--navy); color: white; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,26,46,.3); }
+  .btn-ghost { border: 2px solid rgba(255,255,255,0.5); color: white; }
+  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,.12); transform: translateY(-3px); }
+ 
+  /* ─── SECTION BASE ─── */
+  section { padding: 110px 56px; position: relative; overflow: hidden; }
+  .section-eyebrow {
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: ''; width: 28px; height: 2px; background: var(--pink); border-radius: 2px; flex-shrink: 0;
+  }
+  .section-h {
+    font-size: clamp(2rem, 3.8vw, 3.2rem);
+    font-weight: 800; letter-spacing: -0.03em; line-height: 1.1; margin-bottom: 20px;
+  }
+  .section-lead {
+    font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.8; margin-bottom: 64px;
+  }
  
   /* ─── HERO ─── */
   .hero {
@@ -98,291 +125,215 @@
     display: flex; flex-direction: column; justify-content: center;
     padding: 140px 56px 80px;
     position: relative; overflow: hidden;
+    background: var(--cream);
   }
-  /* animated gradient orbs */
-  .hero-orb {
-    position: absolute; border-radius: 50%; pointer-events: none; filter: blur(80px);
+  .hero::before {
+    content: ''; position: absolute; top: -120px; right: -80px;
+    width: 600px; height: 600px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,0,99,0.09) 0%, transparent 70%);
+    animation: orbFloat 9s ease-in-out infinite; pointer-events: none;
   }
-  .orb-1 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, rgba(255,0,99,0.12), transparent 70%);
-    top: -100px; right: -80px;
-    animation: orbFloat 8s ease-in-out infinite;
-  }
-  .orb-2 {
-    width: 360px; height: 360px;
-    background: radial-gradient(circle, rgba(190,174,226,0.2), transparent 70%);
-    bottom: 0; left: -60px;
-    animation: orbFloat 10s ease-in-out infinite reverse;
+  .hero::after {
+    content: ''; position: absolute; bottom: -80px; left: -60px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(190,174,226,0.16) 0%, transparent 70%);
+    animation: orbFloat 12s ease-in-out infinite reverse; pointer-events: none;
   }
   @keyframes orbFloat {
-    0%, 100% { transform: translateY(0) scale(1); }
-    50% { transform: translateY(-30px) scale(1.05); }
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-28px) scale(1.04); }
   }
- 
   .hero-tag {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 0.72rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
     color: var(--rose); margin-bottom: 28px;
-    opacity: 0; animation: fadeUp 0.7s 0.1s ease forwards;
+    opacity: 0; animation: fadeUp .7s .1s ease forwards;
   }
   .hero-tag-dot {
     width: 7px; height: 7px; border-radius: 50%; background: var(--pink);
     animation: pulse 2s ease-in-out infinite;
   }
   @keyframes pulse {
-    0%, 100% { box-shadow: 0 0 0 0 rgba(255,0,99,0.5); }
+    0%,100% { box-shadow: 0 0 0 0 rgba(255,0,99,.5); }
     50% { box-shadow: 0 0 0 8px rgba(255,0,99,0); }
   }
- 
   .hero h1 {
     font-size: clamp(3rem, 6.5vw, 6.5rem);
     font-weight: 900; line-height: 0.95; letter-spacing: -0.04em;
     max-width: 900px; margin-bottom: 32px;
-    opacity: 0; animation: fadeUp 0.8s 0.2s ease forwards;
+    opacity: 0; animation: fadeUp .8s .2s ease forwards;
   }
   .hero h1 em {
-    font-style: normal; color: var(--pink);
-    position: relative; display: inline-block;
+    font-style: normal; color: var(--pink); position: relative; display: inline-block;
   }
   .hero h1 em::after {
-    content: ''; position: absolute;
-    left: 0; bottom: 4px; width: 100%; height: 6px;
-    background: var(--lavender); opacity: 0.5; border-radius: 3px;
-    z-index: -1;
+    content: ''; position: absolute; left: 0; bottom: 4px; width: 100%; height: 6px;
+    background: var(--lavender); opacity: 0.5; border-radius: 3px; z-index: -1;
   }
- 
   .hero-sub {
-    font-size: 1.15rem; color: var(--muted); max-width: 560px;
+    font-size: 1.15rem; color: var(--muted); max-width: 580px;
     line-height: 1.8; margin-bottom: 48px; font-weight: 400;
-    opacity: 0; animation: fadeUp 0.7s 0.35s ease forwards;
+    opacity: 0; animation: fadeUp .7s .35s ease forwards;
   }
   .hero-sub strong { color: var(--navy); font-weight: 600; }
- 
   .hero-actions {
     display: flex; gap: 16px; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.7s 0.5s ease forwards;
+    opacity: 0; animation: fadeUp .7s .5s ease forwards;
   }
-  .btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 15px 32px; border-radius: 100px;
-    font-weight: 600; font-size: 0.9rem; text-decoration: none;
-    letter-spacing: 0.01em; transition: all 0.25s;
-  }
-  .btn-dark { background: var(--navy); color: var(--cream); }
-  .btn-dark:hover { background: var(--rose); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(206,31,106,0.25); }
-  .btn-outline { border: 2px solid var(--navy); color: var(--navy); }
-  .btn-outline:hover { background: var(--navy); color: var(--cream); transform: translateY(-3px); }
- 
   .hero-scroll-hint {
     position: absolute; bottom: 40px; left: 56px;
     display: flex; align-items: center; gap: 12px;
     font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase;
-    color: var(--muted); opacity: 0.6;
-    opacity: 0; animation: fadeUp 0.7s 0.9s ease forwards;
+    color: var(--muted); opacity: 0; animation: fadeUp .7s .9s ease forwards;
   }
   .scroll-line {
-    width: 40px; height: 1px; background: var(--muted);
-    position: relative; overflow: hidden;
+    width: 40px; height: 1px; background: var(--muted); position: relative; overflow: hidden;
   }
   .scroll-line::after {
-    content: ''; position: absolute;
-    top: 0; left: -100%; width: 100%; height: 100%;
-    background: var(--pink);
-    animation: scrollLine 1.8s ease-in-out infinite;
+    content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+    background: var(--pink); animation: scrollLine 1.8s ease-in-out infinite;
   }
-  @keyframes scrollLine {
-    0% { left: -100%; } 100% { left: 100%; }
-  }
+  @keyframes scrollLine { 0% { left: -100%; } 100% { left: 100%; } }
  
-  /* ─── SECTION BASE ─── */
-  section { padding: 110px 56px; position: relative; }
-  .section-eyebrow {
-    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--rose); margin-bottom: 18px; display: flex; align-items: center; gap: 10px;
+  /* ─── MARQUEE ─── */
+  .marquee-wrap { overflow: hidden; padding: 18px 0; background: var(--pink); }
+  .marquee-track { display: flex; width: max-content; animation: marquee 22s linear infinite; }
+  .marquee-item {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: white; white-space: nowrap; padding: 0 32px; opacity: 0.85;
   }
-  .section-eyebrow::before {
-    content: ''; width: 28px; height: 2px; background: var(--pink); border-radius: 2px;
-  }
-  .section-h {
-    font-size: clamp(2rem, 3.8vw, 3.2rem);
-    font-weight: 800; letter-spacing: -0.03em; line-height: 1.1;
-    margin-bottom: 20px;
-  }
-  .section-lead {
-    font-size: 1.05rem; color: var(--muted); max-width: 560px; line-height: 1.8; margin-bottom: 64px;
-  }
+  .marquee-sep { opacity: 1 !important; padding: 0 8px; }
  
-  /* ─── PROBLEM SECTION ─── */
-  .problem-section { background: var(--navy); color: var(--cream); }
-  .problem-section .section-eyebrow { color: var(--lavender); }
-  .problem-section .section-eyebrow::before { background: var(--lavender); }
-  .problem-section .section-h { color: var(--cream); }
-  .problem-section .section-lead { color: rgba(253,246,240,0.6); max-width: 100%; }
- 
-  .problem-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 2px; margin-top: 56px;
-    border-radius: 20px; overflow: hidden;
-  }
-  .problem-card {
-    padding: 44px 36px;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.07);
-    transition: background 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .problem-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 3px;
-    background: linear-gradient(90deg, var(--pink), var(--rose));
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .problem-card:hover { background: rgba(255,255,255,0.07); }
-  .problem-card:hover::before { transform: scaleX(1); }
-  .problem-num {
-    font-size: 3.5rem; font-weight: 900; letter-spacing: -0.06em;
-    color: rgba(255,255,255,0.06); line-height: 1; margin-bottom: 16px;
-  }
-  .problem-card h3 {
-    font-size: 1.05rem; font-weight: 700; color: var(--cream);
-    margin-bottom: 12px; line-height: 1.3;
-  }
-  .problem-card p {
-    font-size: 0.9rem; color: rgba(253,246,240,0.55); line-height: 1.75;
-  }
- 
-  /* ─── HOW I WORK ─── */
-  .how-section { background: var(--cream2); }
-  .process-steps {
-    display: grid; grid-template-columns: repeat(4, 1fr);
-    gap: 0; position: relative; margin-top: 56px;
-  }
-  .process-steps::before {
-    content: ''; position: absolute;
-    top: 52px; left: 12.5%; right: 12.5%;
-    height: 2px;
-    background: linear-gradient(90deg, var(--lavender), var(--pink), var(--rose), var(--lavender));
-    z-index: 0;
-  }
-  .step {
-    display: flex; flex-direction: column; align-items: center;
-    text-align: center; padding: 0 24px; position: relative; z-index: 1;
-  }
-  .step-circle {
-    width: 104px; height: 104px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 2rem; margin-bottom: 28px;
-    border: 2px solid var(--border);
-    background: var(--white);
-    transition: transform 0.35s, box-shadow 0.35s, border-color 0.3s;
-  }
-  .step:hover .step-circle {
-    transform: translateY(-8px) scale(1.05);
-    box-shadow: 0 20px 40px rgba(255,0,99,0.15);
-    border-color: var(--pink);
-  }
-  .step-num {
-    font-size: 0.65rem; font-weight: 800; letter-spacing: 0.14em;
-    text-transform: uppercase; color: var(--pink); margin-bottom: 10px;
-  }
-  .step h3 { font-size: 1rem; font-weight: 700; margin-bottom: 10px; }
-  .step p { font-size: 0.85rem; color: var(--muted); line-height: 1.7; }
- 
-  /* ─── PROOF / WINS ─── */
-  .proof-section { background: var(--white); }
-  .proof-grid {
-    display: grid; grid-template-columns: 1fr 1fr 1fr;
-    gap: 24px; margin-top: 56px;
-  }
-  .proof-card {
-    border-radius: 24px; padding: 40px 36px;
-    border: 1px solid var(--border);
-    background: var(--cream);
-    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    position: relative; overflow: hidden;
-  }
-  .proof-card::after {
-    content: ''; position: absolute;
-    bottom: 0; left: 0; right: 0; height: 4px;
-    background: linear-gradient(90deg, var(--pink), var(--rose));
-    transform: scaleX(0); transform-origin: left;
-    transition: transform 0.4s ease;
-  }
-  .proof-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 24px 56px rgba(206,31,106,0.1);
-    border-color: rgba(206,31,106,0.2);
-  }
-  .proof-card:hover::after { transform: scaleX(1); }
-  .proof-tag {
-    display: inline-block; font-size: 0.68rem; font-weight: 700;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--rose); background: rgba(206,31,106,0.08);
-    padding: 5px 14px; border-radius: 100px; margin-bottom: 24px;
-  }
-  .proof-stat {
-    font-size: 3rem; font-weight: 900; letter-spacing: -0.05em;
-    color: var(--navy); line-height: 1; margin-bottom: 8px;
-  }
-  .proof-stat span { color: var(--pink); }
-  .proof-card h3 {
-    font-size: 1.05rem; font-weight: 700; margin-bottom: 14px; line-height: 1.3;
-  }
-  .proof-card p {
-    font-size: 0.9rem; color: var(--muted); line-height: 1.75;
-  }
- 
-  /* ─── WHAT EXCITES ME ─── */
-  .excites-section { background: var(--cream); }
-  .excites-grid {
+  /* ─── ABOUT ─── */
+  .about-section { background: var(--white); }
+  .about-grid {
     display: grid; grid-template-columns: 1fr 1fr;
-    gap: 24px; margin-top: 56px;
+    gap: 64px; align-items: start; margin-top: 56px;
   }
-  .excite-card {
+  .about-text p { font-size: 1.02rem; color: var(--muted); line-height: 1.85; margin-bottom: 22px; }
+  .about-text p strong { color: var(--navy); font-weight: 600; }
+  .about-text p em { font-style: normal; color: var(--pink); font-weight: 600; }
+  .about-cards { display: flex; flex-direction: column; gap: 14px; }
+  .about-card {
+    padding: 20px 24px; border-radius: 16px;
+    border: 1px solid rgba(190,174,226,0.3); background: var(--cream2);
+    display: flex; align-items: center; gap: 16px;
+    transition: border-color .25s, transform .25s, box-shadow .25s;
+  }
+  .about-card:hover { border-color: rgba(255,0,99,.3); transform: translateX(6px); box-shadow: 0 6px 24px rgba(255,0,99,0.07); }
+  .about-card-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .about-card-label {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--rose); margin-bottom: 3px;
+  }
+  .about-card-title { font-weight: 600; font-size: 0.95rem; margin-bottom: 2px; }
+  .about-card-sub { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+ 
+  /* ─── PROOF ─── */
+  .proof-section { background: var(--cream2); }
+  .proof-list { margin-top: 56px; display: flex; flex-direction: column; gap: 2px; }
+  .proof-item {
+    display: grid; grid-template-columns: 80px 1fr;
+    gap: 32px; padding: 40px 36px;
+    background: var(--white); border-radius: 0;
+    border-left: 3px solid transparent;
+    transition: border-color .3s, background .3s, transform .3s;
+    align-items: start;
+  }
+  .proof-item:first-child { border-radius: 20px 20px 0 0; }
+  .proof-item:last-child { border-radius: 0 0 20px 20px; }
+  .proof-item:hover { border-left-color: var(--pink); background: var(--cream2); transform: translateX(4px); }
+  .proof-num { font-size: 2.8rem; font-weight: 900; letter-spacing: -0.06em; color: var(--pink); line-height: 1; padding-top: 4px; }
+  .proof-item h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 10px; line-height: 1.35; color: var(--navy); }
+  .proof-item p { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+  .proof-item p strong { color: var(--navy); font-weight: 600; }
+ 
+  /* ─── APPROACH ─── */
+  .approach-section { background: var(--navy); color: var(--cream); }
+  .approach-section .section-eyebrow { color: var(--lavender); }
+  .approach-section .section-eyebrow::before { background: var(--lavender); }
+  .approach-section .section-h { color: var(--cream); }
+  .approach-section .section-lead { color: rgba(253,246,240,0.6); }
+  .approach-grid {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    gap: 2px; margin-top: 56px; border-radius: 20px; overflow: hidden;
+  }
+  .approach-card {
+    padding: 44px 36px; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    transition: background .3s; position: relative; overflow: hidden;
+  }
+  .approach-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--pink), var(--rose));
+    transform: scaleX(0); transform-origin: left; transition: transform .4s ease;
+  }
+  .approach-card:hover { background: rgba(255,255,255,0.07); }
+  .approach-card:hover::before { transform: scaleX(1); }
+  .approach-num {
+    font-size: 3.5rem; font-weight: 900; letter-spacing: -0.06em;
+    color: var(--lavender); line-height: 1; margin-bottom: 20px; opacity: 0.85;
+  }
+  .approach-card h3 { font-size: 1.05rem; font-weight: 700; color: var(--cream); margin-bottom: 14px; line-height: 1.3; }
+  .approach-card p { font-size: 0.9rem; color: rgba(253,246,240,0.58); line-height: 1.78; }
+ 
+  /* ─── THINK ─── */
+  .think-section { background: var(--cream2); }
+  .think-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .think-card {
+    padding: 40px 36px; border-radius: 20px;
+    border: 1px solid rgba(190,174,226,0.25); background: var(--white);
+    transition: transform .3s, box-shadow .3s, border-color .3s;
+    position: relative; overflow: hidden;
+  }
+  .think-card::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--lavender), var(--pink));
+    transform: scaleX(0); transform-origin: left; transition: transform .4s ease;
+  }
+  .think-card:hover { transform: translateY(-5px); box-shadow: 0 20px 48px rgba(206,31,106,0.09); border-color: rgba(190,174,226,0.5); }
+  .think-card:hover::after { transform: scaleX(1); }
+  .think-topic {
+    font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 16px; display: flex; align-items: center; gap: 8px;
+  }
+  .think-topic::before { content: ''; width: 20px; height: 2px; background: var(--pink); border-radius: 2px; }
+  .think-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.8; }
+  .think-card p strong { color: var(--navy); font-weight: 600; }
+ 
+  /* ─── SKILLS ─── */
+  .skills-section { background: var(--white); }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 56px; }
+  .skill-card {
     padding: 36px 32px; border-radius: 20px;
-    border: 1px solid var(--border); background: var(--white);
+    border: 1px solid rgba(190,174,226,0.3); background: var(--cream2);
     display: flex; gap: 24px; align-items: flex-start;
-    transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    transition: border-color .3s, box-shadow .3s, transform .3s;
   }
-  .excite-card:hover {
-    border-color: var(--lavender);
-    box-shadow: 0 12px 36px rgba(190,174,226,0.2);
-    transform: translateY(-4px);
-  }
-  .excite-icon {
+  .skill-card:hover { border-color: var(--lavender); box-shadow: 0 12px 36px rgba(190,174,226,.2); transform: translateY(-4px); }
+  .skill-icon {
     width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-    background: linear-gradient(135deg, rgba(255,0,99,0.08), rgba(190,174,226,0.15));
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+    background: linear-gradient(135deg, rgba(190,174,226,.25), rgba(255,0,99,.08));
   }
-  .excite-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
-  .excite-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .skill-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; }
+  .skill-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
  
   /* ─── NUMBERS ─── */
-  .numbers-section {
-    background: var(--navy);
-    color: var(--cream);
-  }
+  .numbers-section { background: var(--navy); color: var(--cream); }
   .numbers-section .section-eyebrow { color: var(--lavender); }
   .numbers-section .section-eyebrow::before { background: var(--lavender); }
-  .numbers-section .section-h { color: var(--cream); }
   .numbers-grid {
-    display: grid; grid-template-columns: repeat(5, 1fr);
+    display: grid; grid-template-columns: repeat(6,1fr);
     gap: 1px; background: rgba(255,255,255,0.06);
     border-radius: 20px; overflow: hidden; margin-top: 56px;
   }
-  .number-card {
-    padding: 48px 36px; background: var(--navy2);
-    text-align: center;
-    transition: background 0.3s;
-  }
+  .number-card { padding: 48px 28px; background: var(--navy2); text-align: center; transition: background .3s; }
   .number-card:hover { background: rgba(255,0,99,0.08); }
   .big-n {
-    font-size: 3.5rem; font-weight: 900; letter-spacing: -0.06em;
+    font-size: 3rem; font-weight: 900; letter-spacing: -0.06em;
     line-height: 1; margin-bottom: 12px;
-    background: linear-gradient(135deg, #fff, rgba(255,255,255,0.7));
+    background: linear-gradient(135deg, #fff, rgba(255,255,255,.7));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
   .big-n em {
@@ -390,64 +341,34 @@
     background: linear-gradient(135deg, var(--pink), var(--rose));
     -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   }
-  .number-card p {
-    font-size: 0.85rem; color: rgba(253,246,240,0.5); line-height: 1.5;
-  }
- 
-  /* ─── MARQUEE ─── */
-  .marquee-wrap {
-    overflow: hidden; padding: 18px 0;
-    background: var(--pink);
-    border-top: none; border-bottom: none;
-  }
-  .marquee-track {
-    display: flex; gap: 0; width: max-content;
-    animation: marquee 22s linear infinite;
-  }
-  .marquee-item {
-    font-size: 0.78rem; font-weight: 700;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: white; white-space: nowrap; padding: 0 32px;
-    opacity: 0.85;
-  }
-  .marquee-sep { opacity: 1 !important; padding: 0 8px; }
+  .number-card p { font-size: 0.8rem; color: rgba(253,246,240,.5); line-height: 1.5; }
  
   /* ─── CONTACT ─── */
   .contact-section {
-    background: var(--pink); color: white;
-    text-align: center; padding: 120px 56px;
+    background: var(--pink); color: white; text-align: center; padding: 120px 56px;
   }
-  .contact-section .section-eyebrow { color: rgba(255,255,255,0.7); justify-content: center; }
-  .contact-section .section-eyebrow::before { background: rgba(255,255,255,0.5); }
+  .contact-section .section-eyebrow { color: rgba(255,255,255,.7); justify-content: center; }
+  .contact-section .section-eyebrow::before { background: rgba(255,255,255,.5); }
   .contact-h {
     font-size: clamp(2.8rem, 5.5vw, 5rem);
     font-weight: 900; letter-spacing: -0.04em; line-height: 1;
     color: white; margin-bottom: 24px;
   }
   .contact-sub {
-    font-size: 1.1rem; color: rgba(255,255,255,0.75);
-    max-width: 480px; margin: 0 auto 56px; line-height: 1.75;
+    font-size: 1.05rem; color: rgba(255,255,255,.8);
+    max-width: 560px; margin: 0 auto 56px; line-height: 1.8;
   }
-  .contact-btns {
-    display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
-    margin-bottom: 48px;
-  }
-  .btn-white { background: white; color: var(--pink); font-weight: 700; }
-  .btn-white:hover { background: var(--navy); color: white; transform: translateY(-3px); box-shadow: 0 12px 32px rgba(26,26,46,0.3); }
-  .btn-ghost { border: 2px solid rgba(255,255,255,0.5); color: white; }
-  .btn-ghost:hover { border-color: white; background: rgba(255,255,255,0.1); transform: translateY(-3px); }
-  .contact-note {
-    font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 0.04em;
-  }
+  .contact-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 40px; }
+  .contact-note { font-size: 0.8rem; color: rgba(255,255,255,.5); letter-spacing: 0.04em; }
  
   /* ─── FOOTER ─── */
   footer {
     background: var(--pink); padding: 28px 56px;
-    border-top: 1px solid rgba(255,255,255,0.15);
+    border-top: 1px solid rgba(255,255,255,.15);
     display: flex; flex-direction: column; align-items: center;
     gap: 6px; text-align: center;
   }
-  footer span { font-size: 0.78rem; color: rgba(255,255,255,0.6); }
+  footer span { font-size: 0.78rem; color: rgba(255,255,255,.6); }
  
   /* ─── ANIMATIONS ─── */
   @keyframes fadeUp {
@@ -458,41 +379,60 @@
     from { transform: translateX(0); }
     to   { transform: translateX(-50%); }
   }
-  .reveal {
-    opacity: 1; transform: translateY(0);
-    transition: opacity 0.7s ease, transform 0.7s ease;
-  }
-  .js-reveal { opacity: 0; transform: translateY(32px); }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
- 
-  /* stagger children */
-  .stagger > * { transition-delay: calc(var(--i, 0) * 80ms); }
+  .reveal { opacity: 1; transform: translateY(0); transition: opacity .7s ease, transform .7s ease; }
+  .js-reveal { opacity: 0 !important; transform: translateY(32px) !important; }
+  .reveal.visible { opacity: 1 !important; transform: translateY(0) !important; }
  
   /* ─── RESPONSIVE ─── */
+  @media (max-width: 1200px) {
+    nav { padding: 16px 40px; } nav.scrolled { padding: 12px 40px; }
+    section { padding: 100px 40px; } .hero { padding: 130px 40px 80px; }
+  }
   @media (max-width: 1024px) {
-    .proof-grid { grid-template-columns: 1fr 1fr; }
-    .numbers-grid { grid-template-columns: 1fr 1fr 1fr; }
-    .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
-    .process-steps::before { display: none; }
+    .numbers-grid { grid-template-columns: repeat(3,1fr); }
+    .approach-grid { grid-template-columns: 1fr 1fr; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .think-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .proof-item { gap: 20px; }
   }
   @media (max-width: 768px) {
-    nav { padding: 14px 24px; }
-    nav.scrolled { padding: 10px 24px; }
-    .nav-links { display: none; }
-    section { padding: 80px 24px; }
-    .hero { padding: 120px 24px 60px; }
-    .hero h1 { font-size: clamp(2.8rem, 10vw, 4rem); }
-    .problem-grid { grid-template-columns: 1fr; }
-    .proof-grid { grid-template-columns: 1fr; }
-    .excites-grid { grid-template-columns: 1fr; }
-    .numbers-grid { grid-template-columns: 1fr 1fr 1fr; }
-    .process-steps { grid-template-columns: 1fr 1fr; }
+    nav { padding: 14px 20px; } nav.scrolled { padding: 10px 20px; }
+    .nav-links { display: none; } .nav-logo span { font-size: 0.9rem; }
+    section { padding: 72px 20px; } .hero { padding: 100px 20px 60px; }
+    .hero h1 { font-size: clamp(2.4rem, 9vw, 3.5rem); letter-spacing: -0.03em; }
+    .hero-sub { font-size: 1rem; }
+    .section-h { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+    .section-lead { font-size: 0.95rem; margin-bottom: 40px; }
+    .about-grid { grid-template-columns: 1fr; gap: 36px; }
+    .think-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .numbers-grid { grid-template-columns: repeat(2,1fr); }
+    .approach-grid { grid-template-columns: 1fr; }
+    .proof-item { grid-template-columns: 1fr; gap: 8px; padding: 28px 20px; }
+    .proof-num { font-size: 1.6rem; } .proof-list { gap: 2px; }
+    .approach-card { padding: 32px 24px; } .think-card { padding: 28px 24px; }
+    .skill-card { padding: 24px 20px; } .about-card { padding: 16px 18px; }
     .hero-scroll-hint { display: none; }
-    footer { padding: 24px; }
+    .contact-section { padding: 80px 20px; }
+    .contact-h { font-size: clamp(2.2rem, 8vw, 3.5rem); }
+    footer { padding: 24px 20px; }
+    .btn { padding: 13px 24px; font-size: 0.85rem; }
+    .contact-btns { flex-direction: column; align-items: center; gap: 12px; }
   }
   @media (max-width: 480px) {
+    .numbers-grid { grid-template-columns: repeat(2,1fr); }
+    .hero h1 { font-size: clamp(2.2rem, 9vw, 3rem); }
+    .about-card { flex-direction: column; gap: 8px; }
+    .skill-card { flex-direction: column; gap: 12px; }
+    .proof-item h3 { font-size: 0.95rem; }
+  }
+  @media (max-width: 360px) {
     .numbers-grid { grid-template-columns: 1fr; }
-    .process-steps { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2rem; }
+    section { padding: 60px 16px; }
   }
 </style>
 </head>
@@ -1191,44 +1131,120 @@ k7leIiFQiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiA//9k=" alt="Krishna K
     <span>Krishna Khatri</span>
   </a>
   <ul class="nav-links">
-    <li><a href="#problem">The Problem</a></li>
-    <li><a href="#how">How I Work</a></li>
-    <li><a href="#proof">Proof</a></li>
-    <li><a href="#numbers">Numbers</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#proof">Work</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#think">Thinking</a></li>
     <li><a href="#contact" class="nav-cta">Say Hello</a></li>
   </ul>
 </nav>
  
 <!-- HERO -->
 <section class="hero" id="home">
-  <div class="hero-orb orb-1"></div>
-  <div class="hero-orb orb-2"></div>
+ 
+  <!-- Cherry blossom branch top-right: lavender #beaee2 -->
+  <svg style="position:absolute;top:60px;right:0;width:480px;height:440px;pointer-events:none;z-index:0;opacity:0.10;" viewBox="0 0 480 440" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main branch -->
+    <path d="M480 20 Q400 60 340 130 Q290 190 270 260 Q255 310 260 380" stroke="#beaee2" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+    <!-- Sub-branches -->
+    <path d="M370 105 Q330 80 290 65 Q260 55 230 60" stroke="#beaee2" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M310 168 Q275 145 250 125 Q230 110 215 105" stroke="#beaee2" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M280 230 Q310 210 340 195 Q365 182 385 178" stroke="#beaee2" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M265 295 Q240 275 210 262 Q188 252 168 252" stroke="#beaee2" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <!-- Blossoms: 5-petal flowers scattered along branches -->
+    <!-- Large blossoms -->
+    <g transform="translate(228,62)">
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="3.5" fill="#beaee2"/>
+    </g>
+    <g transform="translate(213,107)">
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="3" fill="#beaee2"/>
+    </g>
+    <g transform="translate(248,128)">
+      <ellipse cx="0" cy="-7" rx="3" ry="6" fill="#beaee2" transform="rotate(36)"/>
+      <ellipse cx="0" cy="-7" rx="3" ry="6" fill="#beaee2" transform="rotate(108)"/>
+      <ellipse cx="0" cy="-7" rx="3" ry="6" fill="#beaee2" transform="rotate(180)"/>
+      <ellipse cx="0" cy="-7" rx="3" ry="6" fill="#beaee2" transform="rotate(252)"/>
+      <ellipse cx="0" cy="-7" rx="3" ry="6" fill="#beaee2" transform="rotate(324)"/>
+      <circle cx="0" cy="0" r="2.8" fill="#beaee2"/>
+    </g>
+    <g transform="translate(386,176)">
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="3" fill="#beaee2"/>
+    </g>
+    <g transform="translate(167,253)">
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-9" rx="4" ry="7" fill="#beaee2" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="3.5" fill="#beaee2"/>
+    </g>
+    <!-- Small scattered petals (fallen) -->
+    <ellipse cx="195" cy="78" rx="3" ry="5" fill="#beaee2" transform="rotate(25,195,78)" opacity="0.6"/>
+    <ellipse cx="270" cy="145" rx="2.5" ry="4.5" fill="#beaee2" transform="rotate(-15,270,145)" opacity="0.5"/>
+    <ellipse cx="360" cy="200" rx="2.5" ry="4" fill="#beaee2" transform="rotate(40,360,200)" opacity="0.6"/>
+    <ellipse cx="185" cy="278" rx="3" ry="5" fill="#beaee2" transform="rotate(-30,185,278)" opacity="0.5"/>
+  </svg>
+ 
+  <!-- Geometric mandala bottom-left: lavender -->
+  <svg style="position:absolute;bottom:-60px;left:-60px;width:340px;height:340px;pointer-events:none;z-index:0;opacity:0.06;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(100,100)">
+      <circle cx="0" cy="0" r="90" stroke="#beaee2" stroke-width="0.8" fill="none"/>
+      <circle cx="0" cy="0" r="72" stroke="#beaee2" stroke-width="0.8" fill="none"/>
+      <circle cx="0" cy="0" r="54" stroke="#beaee2" stroke-width="0.8" fill="none"/>
+      <circle cx="0" cy="0" r="36" stroke="#beaee2" stroke-width="1.2" fill="none"/>
+      <circle cx="0" cy="0" r="18" stroke="#beaee2" stroke-width="1.5" fill="none"/>
+      <!-- 12 radial lines -->
+      <line x1="0" y1="-90" x2="0" y2="90" stroke="#beaee2" stroke-width="0.6" opacity="0.5"/>
+      <line x1="-90" y1="0" x2="90" y2="0" stroke="#beaee2" stroke-width="0.6" opacity="0.5"/>
+      <line x1="-63.6" y1="-63.6" x2="63.6" y2="63.6" stroke="#beaee2" stroke-width="0.6" opacity="0.5"/>
+      <line x1="63.6" y1="-63.6" x2="-63.6" y2="63.6" stroke="#beaee2" stroke-width="0.6" opacity="0.5"/>
+      <line x1="-45" y1="-78" x2="45" y2="78" stroke="#beaee2" stroke-width="0.5" opacity="0.35"/>
+      <line x1="45" y1="-78" x2="-45" y2="78" stroke="#beaee2" stroke-width="0.5" opacity="0.35"/>
+      <line x1="-78" y1="-45" x2="78" y2="45" stroke="#beaee2" stroke-width="0.5" opacity="0.35"/>
+      <line x1="78" y1="-45" x2="-78" y2="45" stroke="#beaee2" stroke-width="0.5" opacity="0.35"/>
+      <!-- Petal diamonds at ring intersections -->
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(30)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(60)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(90)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(120)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(150)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(180)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(210)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(240)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(270)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(300)"/>
+      <ellipse cx="0" cy="-54" rx="5" ry="8" fill="#beaee2" transform="rotate(330)"/>
+      <circle cx="0" cy="0" r="5" fill="#beaee2"/>
+    </g>
+  </svg>
  
   <div class="hero-tag">
     <span class="hero-tag-dot"></span>
     Business Development · Technology Adoption · International Sales
   </div>
- 
-  <h1>
-    I help teams<br>
-    <em>actually use</em><br>
-    the AI they buy.
-  </h1>
- 
-  <p class="hero-sub">
-    Business Development &amp; Technology Adoption Sales —
-    <strong>I find the right clients, close the deal, and stay involved until they're actually seeing results.</strong>
-  </p>
- 
+  <h1>I help teams<br><em>actually use</em><br>the AI they buy.</h1>
+  <p class="hero-sub">Technology doesn't transform organisations. <strong>People do.</strong> I work at the point where those two things have to meet.</p>
   <div class="hero-actions">
     <a href="#proof" class="btn btn-dark">See What I've Done →</a>
     <a href="mailto:khatrikrishna822@gmail.com" class="btn btn-outline">Get in Touch</a>
   </div>
- 
-  <div class="hero-scroll-hint">
-    <span class="scroll-line"></span>
-    Scroll to explore
-  </div>
+  <div class="hero-scroll-hint"><span class="scroll-line"></span>Scroll to explore</div>
 </section>
  
 <!-- MARQUEE -->
@@ -1240,254 +1256,375 @@ k7leIiFQiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiA//9k=" alt="Krishna K
     <span class="marquee-item">Higher Education</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Change Management</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Enterprise Sales</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Quantifiable Value</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Zero Churn</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Stakeholder Engagement</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">AI POC Development</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">B2B Sales</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Cold Outreach</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">AI Adoption</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Google Workspace</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Gemini</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Higher Education</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Change Management</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Enterprise Sales</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">Quantifiable Value</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Zero Churn</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">Stakeholder Engagement</span><span class="marquee-item marquee-sep">✦</span>
     <span class="marquee-item">AI POC Development</span><span class="marquee-item marquee-sep">✦</span>
-    <span class="marquee-item">B2B Sales</span><span class="marquee-item marquee-sep">✦</span>
+    <span class="marquee-item">Cold Outreach</span><span class="marquee-item marquee-sep">✦</span>
   </div>
 </div>
  
- 
 <!-- WHO I AM -->
-<section class="excites-section" id="about" style="background: var(--white);">
+<section class="about-section" id="about">
+  <!-- Full pink bloom top-right -->
+  <svg style="position:absolute;top:-80px;right:-90px;width:520px;height:520px;pointer-events:none;z-index:0;opacity:0.11;" viewBox="0 0 240 240" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(120,120)">
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(0)"   opacity="0.7"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(30)"  opacity="0.65"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(60)"  opacity="0.7"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(90)"  opacity="0.65"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(120)" opacity="0.7"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(150)" opacity="0.65"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(180)" opacity="0.7"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(210)" opacity="0.65"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(240)" opacity="0.7"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(270)" opacity="0.65"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(300)" opacity="0.7"/>
+      <ellipse cx="0" cy="-70" rx="17" ry="52" fill="#FF0063" transform="rotate(330)" opacity="0.65"/>
+      <ellipse cx="0" cy="-46" rx="13" ry="35" fill="#FF0063" transform="rotate(15)"  opacity="0.9"/>
+      <ellipse cx="0" cy="-46" rx="13" ry="35" fill="#FF0063" transform="rotate(60)"  opacity="0.85"/>
+      <ellipse cx="0" cy="-46" rx="13" ry="35" fill="#FF0063" transform="rotate(105)" opacity="0.9"/>
+      <ellipse cx="0" cy="-46" rx="13" ry="35" fill="#FF0063" transform="rotate(150)" opacity="0.85"/>
+      <ellipse cx="0" cy="-46" rx="13" ry="35" fill="#FF0063" transform="rotate(195)" opacity="0.9"/>
+      <ellipse cx="0" cy="-46" rx="13" ry="35" fill="#FF0063" transform="rotate(240)" opacity="0.85"/>
+      <ellipse cx="0" cy="-46" rx="13" ry="35" fill="#FF0063" transform="rotate(285)" opacity="0.9"/>
+      <ellipse cx="0" cy="-46" rx="13" ry="35" fill="#FF0063" transform="rotate(330)" opacity="0.85"/>
+      <circle cx="0" cy="0" r="26" fill="#FF0063"/>
+      <circle cx="0" cy="0" r="14" fill="#FF0063" opacity="0.9"/>
+      <circle cx="0" cy="0" r="7"  fill="#FF0063" opacity="0.7"/>
+    </g>
+  </svg>
+  <!-- Leaf sprig bottom-left: pink -->
+  <svg style="position:absolute;bottom:20px;left:20px;width:200px;height:180px;pointer-events:none;z-index:0;opacity:0.07;" viewBox="0 0 200 180" xmlns="http://www.w3.org/2000/svg">
+    <path d="M30 170 Q50 120 80 90 Q110 60 150 40" stroke="#FF0063" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M80 90 Q60 70 40 55 Q25 44 15 42" stroke="#FF0063" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <path d="M80 90 Q100 72 120 58 Q138 46 155 42" stroke="#FF0063" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <ellipse cx="15" cy="40" rx="14" ry="8" fill="#FF0063" transform="rotate(-30,15,40)"/>
+    <ellipse cx="157" cy="40" rx="14" ry="8" fill="#FF0063" transform="rotate(20,157,40)"/>
+    <ellipse cx="150" cy="38" rx="13" ry="7" fill="#FF0063" transform="rotate(-10,150,38)"/>
+    <ellipse cx="115" cy="55" rx="11" ry="6" fill="#FF0063" transform="rotate(15,115,55)"/>
+    <ellipse cx="40" cy="52" rx="11" ry="6" fill="#FF0063" transform="rotate(-25,40,52)"/>
+  </svg>
+ 
   <div class="reveal">
     <div class="section-eyebrow">Who I Am</div>
-    <h2 class="section-h">I'm Krishna Khatri.<br>I close deals and make them stick.</h2>
-    <p class="section-lead">
-      Based in Ahmedabad, India. 3+ years selling technology and AI solutions to international clients across the US and Europe.
-    </p>
+    <h2 class="section-h">I close deals<br>and make them stick.</h2>
   </div>
-  <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;" class="reveal">
-    <div>
-      <p style="font-size:1.05rem; color:var(--muted); line-height:1.85; margin-bottom:20px;">
-        Most sales reps close a deal and move on. I stay involved through onboarding because I've learned that a signed contract means nothing if the client never actually adopts the product.
-      </p>
-      <p style="font-size:1.05rem; color:var(--muted); line-height:1.85; margin-bottom:20px;">
-        That gap between <strong style="color:var(--navy)">"we bought it"</strong> and <strong style="color:var(--pink)">"we use it every day"</strong> is where I do my best work.
-      </p>
-      <p style="font-size:1.05rem; color:var(--muted); line-height:1.85;">
-        I currently work at IndiaNIC Infotech, where I've built a $485K+ sales pipeline and closed $114K+ in international deals — mostly by running a pre-sales process I designed myself, which starts with understanding the client's real problem before ever pitching a solution.
-      </p>
+  <div class="about-grid reveal">
+    <div class="about-text">
+      <p>My name is Krishna Khatri. I'm based in Ahmedabad, India, and I've spent the last three years doing something most people find surprisingly hard, <strong>convincing organisations to actually change how they work.</strong></p>
+      <p>I started with a Computer Engineering degree and ended up in sales. It turned out to be the best thing that could have happened. Most salespeople can't hold a technical conversation. Most engineers can't close a deal. I learned to do both, and that became my edge.</p>
+      <p>I've found clients through cold outreach with no warm introductions, built a pre-sales process from scratch that my team now uses as standard, and deployed AI proof-of-concepts across multiple industries to show clients what's genuinely possible before asking them to commit.</p>
+      <p><em>Every client I've ever closed is still a client. Zero churn. That doesn't happen by accident.</em></p>
     </div>
-    <div style="display:flex; flex-direction:column; gap:14px;">
-      <div style="padding:20px 24px; border-radius:16px; border:1px solid var(--border); background:var(--cream); display:flex; align-items:center; gap:16px;">
-        <span style="font-size:1.4rem;">🏢</span>
-        <div>
-          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--rose); margin-bottom:3px;">Currently</div>
-          <div style="font-weight:600; font-size:0.95rem;">Business Development Executive</div>
-          <div style="font-size:0.83rem; color:var(--muted);">IndiaNIC Infotech · May 2024 – Present</div>
-        </div>
-      </div>
-      <div style="padding:20px 24px; border-radius:16px; border:1px solid var(--border); background:var(--cream); display:flex; align-items:center; gap:16px;">
-        <span style="font-size:1.4rem;">📍</span>
-        <div>
-          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--rose); margin-bottom:3px;">Location</div>
-          <div style="font-weight:600; font-size:0.95rem;">Ahmedabad, India</div>
-          <div style="font-size:0.83rem; color:var(--muted);">Open to remote &amp; relocation</div>
-        </div>
-      </div>
-      <div style="padding:20px 24px; border-radius:16px; border:1px solid var(--border); background:var(--cream); display:flex; align-items:center; gap:16px;">
-        <span style="font-size:1.4rem;">🛠️</span>
-        <div>
-          <div style="font-size:0.75rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color:var(--rose); margin-bottom:3px;">Tools I Use</div>
-          <div style="font-size:0.83rem; color:var(--muted); line-height:1.6;">LinkedIn Sales Navigator · HubSpot CRM · Apollo.io · Lusha · Google Workspace · BANT · MEDDIC</div>
-        </div>
-      </div>
+    <div class="about-cards">
+      <div class="about-card"><span class="about-card-icon">🏢</span><div><div class="about-card-label">Currently</div><div class="about-card-title">Business Development Executive</div><div class="about-card-sub">IndiaNIC Infotech · May 2024 – Present</div></div></div>
+      <div class="about-card"><span class="about-card-icon">📍</span><div><div class="about-card-label">Location</div><div class="about-card-title">Ahmedabad, India</div></div></div>
+      <div class="about-card"><span class="about-card-icon">🎓</span><div><div class="about-card-label">Background</div><div class="about-card-title">B.Tech Computer Engineering</div><div class="about-card-sub">U.V. Patel College of Engineering, Mehsana</div></div></div>
+      <div class="about-card"><span class="about-card-icon">🛠️</span><div><div class="about-card-label">Tools</div><div class="about-card-title">LinkedIn Sales Navigator · HubSpot · Apollo.io</div><div class="about-card-sub">Lusha · Google Workspace · BANT · MEDDIC</div></div></div>
+      <div class="about-card"><span class="about-card-icon">🏆</span><div><div class="about-card-label">Recognition</div><div class="about-card-title">HackMerced VII Winner</div><div class="about-card-sub">Most Creative Use of Twilio API · 260 participants</div></div></div>
     </div>
   </div>
 </section>
  
-<!-- THE PROBLEM -->
-<section class="problem-section" id="problem">
+<!-- WHAT I HAVE DONE -->
+<section class="proof-section" id="proof">
+  <!-- Botanical line art left: rose/pink CE1F6A -->
+  <svg style="position:absolute;top:0;left:-20px;width:280px;height:100%;pointer-events:none;z-index:0;opacity:0.07;" viewBox="0 0 280 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet">
+    <!-- Vertical stem -->
+    <path d="M60 0 Q55 200 60 400 Q65 600 60 800" stroke="#CE1F6A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <!-- Left leaves -->
+    <path d="M60 120 Q30 100 10 80 Q5 70 8 60 Q25 75 45 95 Q55 108 60 120Z" fill="#CE1F6A"/>
+    <path d="M60 280 Q28 258 8 235 Q3 224 6 214 Q24 230 46 252 Q56 265 60 280Z" fill="#CE1F6A"/>
+    <path d="M60 450 Q30 428 10 405 Q5 394 8 384 Q25 400 46 422 Q56 436 60 450Z" fill="#CE1F6A"/>
+    <path d="M60 620 Q28 598 8 574 Q3 563 6 553 Q24 570 46 592 Q56 606 60 620Z" fill="#CE1F6A"/>
+    <!-- Right leaves -->
+    <path d="M60 200 Q90 178 112 156 Q118 145 115 135 Q98 150 76 172 Q64 186 60 200Z" fill="#CE1F6A"/>
+    <path d="M60 360 Q92 338 114 315 Q120 304 117 294 Q100 310 78 332 Q66 346 60 360Z" fill="#CE1F6A"/>
+    <path d="M60 530 Q90 508 112 485 Q118 474 115 464 Q98 480 76 502 Q64 516 60 530Z" fill="#CE1F6A"/>
+    <path d="M60 700 Q92 678 114 655 Q120 644 117 634 Q100 650 78 672 Q66 686 60 700Z" fill="#CE1F6A"/>
+    <!-- Blossom tops -->
+    <g transform="translate(60,50)">
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6" fill="#CE1F6A" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6" fill="#CE1F6A" transform="rotate(72)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6" fill="#CE1F6A" transform="rotate(144)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6" fill="#CE1F6A" transform="rotate(216)"/>
+      <ellipse cx="0" cy="-8" rx="3.5" ry="6" fill="#CE1F6A" transform="rotate(288)"/>
+      <circle cx="0" cy="0" r="3" fill="#CE1F6A"/>
+    </g>
+  </svg>
+  <!-- Wave pattern right side: CE1F6A -->
+  <svg style="position:absolute;top:0;right:-10px;width:180px;height:100%;pointer-events:none;z-index:0;opacity:0.05;" viewBox="0 0 180 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMid meet">
+    <path d="M140 0 Q160 40 140 80 Q120 120 140 160 Q160 200 140 240 Q120 280 140 320 Q160 360 140 400 Q120 440 140 480 Q160 520 140 560 Q120 600 140 640 Q160 680 140 720 Q120 760 140 800" stroke="#CE1F6A" stroke-width="2" fill="none"/>
+    <path d="M160 0 Q180 50 160 100 Q140 150 160 200 Q180 250 160 300 Q140 350 160 400 Q180 450 160 500 Q140 550 160 600 Q180 650 160 700 Q140 750 160 800" stroke="#CE1F6A" stroke-width="1.2" fill="none" opacity="0.5"/>
+  </svg>
+ 
   <div class="reveal">
-    <div class="section-eyebrow">The Reality</div>
-    <h2 class="section-h">Most AI projects fail<br>before they begin.</h2>
-    <p class="section-lead">
-      It's not a technology problem. It's a people problem. And that's exactly the kind of problem I love solving.
-    </p>
+    <div class="section-eyebrow">What I've Actually Done</div>
+    <h2 class="section-h">Six things worth<br>knowing about my work.</h2>
+    <p class="section-lead">Not highlights from a resume. The actual facts behind the numbers, and what they mean.</p>
   </div>
-  <div class="problem-grid stagger reveal">
-    <div class="problem-card" style="--i:0">
-      <div class="problem-num">01</div>
-      <h3>They buy the tool. Nobody uses it.</h3>
-      <p>Leaders sign contracts, IT deploys the software, and three months later the dashboards show 8% adoption. The technology wasn't the issue — nobody made it real for the people who needed to use it.</p>
-    </div>
-    <div class="problem-card" style="--i:1">
-      <div class="problem-num">02</div>
-      <h3>The sales pitch stops at the demo.</h3>
-      <p>A slick presentation wins the deal. Then the vendor disappears. I stay involved through onboarding, through the first difficult quarter, until the client can point to real outcomes they care about.</p>
-    </div>
-    <div class="problem-card" style="--i:2">
-      <div class="problem-num">03</div>
-      <h3>The right people never see what AI can do.</h3>
-      <p>Decisions get made by committees who've only read about AI, never seen it work on their actual data. I build live proof-of-concepts — tailored to each client — that turn skeptics into champions.</p>
-    </div>
+  <div class="proof-list reveal">
+    <div class="proof-item"><div class="proof-num">01</div><div><h3>Closed $114K+ in international deals entirely through cold outreach.</h3><p>No warm introductions, no existing relationships, no brand name doing the work. Every deal started with a message I wrote to someone who had never heard of me.</p></div></div>
+    <div class="proof-item"><div class="proof-num">02</div><div><h3>Built a $485K+ pipeline across US and Europe from scratch.</h3><p>By finding the right companies, reaching the right people inside them, and having conversations worth having. Not spray-and-pray outreach, targeted, researched, specific.</p></div></div>
+    <div class="proof-item"><div class="proof-num">03</div><div><h3>Designed a pre-sales framework my entire team now uses as their standard process.</h3><p>Discovery, Proof of Concept, Validation. I built it because I needed it. It works because it gets to what a client actually needs before anyone writes a proposal.</p></div></div>
+    <div class="proof-item"><div class="proof-num">04</div><div><h3>Deployed AI proof-of-concepts across healthcare, fintech, IT services, and edtech.</h3><p>Not as demos, as <strong>working prototypes built around each client's specific question.</strong> That's what moved the deals forward. Seeing it work on their problem, not a generic use case.</p></div></div>
+    <div class="proof-item"><div class="proof-num">05</div><div><h3>Achieved a 12% response rate on cold outreach, consistently above industry average.</h3><p>By writing messages that referenced something real and specific about each person's business, a recent hire, a product launch, a problem their industry was struggling with publicly.</p></div></div>
+    <div class="proof-item"><div class="proof-num">06</div><div><h3>Maintained zero churn across every account I personally closed and onboarded.</h3><p>Every client adopted the technology. Every single one. That didn't happen by accident, it happened because I stayed involved well past the signature.</p></div></div>
   </div>
 </section>
  
-<!-- HOW I WORK -->
-<section class="how-section" id="how">
+<!-- MY APPROACH -->
+<section class="approach-section" id="approach">
+  <!-- Lavender cherry blossom branch top-right on dark -->
+  <svg style="position:absolute;top:0;right:0;width:380px;height:360px;pointer-events:none;z-index:0;opacity:0.09;" viewBox="0 0 380 360" xmlns="http://www.w3.org/2000/svg">
+    <path d="M380 10 Q310 50 255 115 Q210 168 195 235" stroke="#beaee2" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M290 82 Q255 58 220 48 Q198 42 180 44" stroke="#beaee2" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M240 148 Q265 128 295 118 Q315 110 332 108" stroke="#beaee2" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M205 210 Q180 192 158 182 Q140 174 125 172" stroke="#beaee2" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <g transform="translate(178,46)"><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(0)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(72)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(144)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(216)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(288)"/><circle cx="0" cy="0" r="3" fill="#beaee2"/></g>
+    <g transform="translate(222,50)"><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(36)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(108)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(180)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(252)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(324)"/><circle cx="0" cy="0" r="2.8" fill="#beaee2"/></g>
+    <g transform="translate(334,110)"><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(0)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(72)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(144)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(216)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#beaee2" transform="rotate(288)"/><circle cx="0" cy="0" r="2.8" fill="#beaee2"/></g>
+    <g transform="translate(123,174)"><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(0)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(72)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(144)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(216)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#beaee2" transform="rotate(288)"/><circle cx="0" cy="0" r="3" fill="#beaee2"/></g>
+    <ellipse cx="200" cy="62" rx="2.5" ry="4" fill="#beaee2" transform="rotate(20,200,62)" opacity="0.6"/>
+    <ellipse cx="258" cy="138" rx="2.5" ry="4" fill="#beaee2" transform="rotate(-15,258,138)" opacity="0.5"/>
+    <ellipse cx="148" cy="192" rx="2.5" ry="4" fill="#beaee2" transform="rotate(35,148,192)" opacity="0.6"/>
+  </svg>
+  <!-- Lavender geometric mandala bottom-left on dark -->
+  <svg style="position:absolute;bottom:-40px;left:-40px;width:280px;height:280px;pointer-events:none;z-index:0;opacity:0.07;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(100,100)">
+      <circle cx="0" cy="0" r="88" stroke="#beaee2" stroke-width="0.8" fill="none"/>
+      <circle cx="0" cy="0" r="66" stroke="#beaee2" stroke-width="1" fill="none"/>
+      <circle cx="0" cy="0" r="44" stroke="#beaee2" stroke-width="1.2" fill="none"/>
+      <circle cx="0" cy="0" r="22" stroke="#beaee2" stroke-width="1.5" fill="none"/>
+      <line x1="0" y1="-88" x2="0" y2="88" stroke="#beaee2" stroke-width="0.5" opacity="0.4"/>
+      <line x1="-88" y1="0" x2="88" y2="0" stroke="#beaee2" stroke-width="0.5" opacity="0.4"/>
+      <line x1="-62" y1="-62" x2="62" y2="62" stroke="#beaee2" stroke-width="0.5" opacity="0.4"/>
+      <line x1="62" y1="-62" x2="-62" y2="62" stroke="#beaee2" stroke-width="0.5" opacity="0.4"/>
+      <ellipse cx="0" cy="-44" rx="4.5" ry="7" fill="#beaee2" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-44" rx="4.5" ry="7" fill="#beaee2" transform="rotate(45)"/>
+      <ellipse cx="0" cy="-44" rx="4.5" ry="7" fill="#beaee2" transform="rotate(90)"/>
+      <ellipse cx="0" cy="-44" rx="4.5" ry="7" fill="#beaee2" transform="rotate(135)"/>
+      <ellipse cx="0" cy="-44" rx="4.5" ry="7" fill="#beaee2" transform="rotate(180)"/>
+      <ellipse cx="0" cy="-44" rx="4.5" ry="7" fill="#beaee2" transform="rotate(225)"/>
+      <ellipse cx="0" cy="-44" rx="4.5" ry="7" fill="#beaee2" transform="rotate(270)"/>
+      <ellipse cx="0" cy="-44" rx="4.5" ry="7" fill="#beaee2" transform="rotate(315)"/>
+      <circle cx="0" cy="0" r="5" fill="#beaee2"/>
+    </g>
+  </svg>
+ 
   <div class="reveal">
     <div class="section-eyebrow">My Approach</div>
-    <h2 class="section-h">I don't lead with a pitch.<br>I lead with a question.</h2>
-    <p class="section-lead">
-      This is the process I've used to close international accounts from cold outreach — no warm intros, no big brand name behind me.
-    </p>
+    <h2 class="section-h">Before I talk about<br>any solution, I listen.</h2>
+    <p class="section-lead">This is the process I've used to close international accounts from cold outreach, no warm intros, no big brand name behind me.</p>
   </div>
-  <div class="process-steps stagger reveal">
-    <div class="step" style="--i:0">
-      <div class="step-circle">🔍</div>
-      <div class="step-num">Step 01</div>
-      <h3>Understand First</h3>
-      <p>Before I say anything about a solution, I run a structured discovery to understand what the client actually needs — their workflow, their blockers, and what success looks like for them specifically. Not what the brochure says they need.</p>
-    </div>
-    <div class="step" style="--i:1">
-      <div class="step-circle">⚡</div>
-      <div class="step-num">Step 02</div>
-      <h3>Show Before You Ask</h3>
-      <p>I build a small AI proof-of-concept tailored to their exact use case. They see the value working in their context before signing anything. This removes doubt, builds trust, and shortens the sales cycle.</p>
-    </div>
-    <div class="step" style="--i:2">
-      <div class="step-circle">🤝</div>
-      <div class="step-num">Step 03</div>
-      <h3>Close and Stay Involved</h3>
-      <p>I manage the deal through to close and stay involved through onboarding. I want the client using the product and seeing real results — not just holding a contract they forget about in three months.</p>
-    </div>
-    <div class="step" style="--i:3">
-      <div class="step-circle">🚀</div>
-      <div class="step-num">Step 04</div>
-      <h3>Drive Adoption</h3>
-      <p>I stay involved after the signature. I run training sessions, build feedback loops, and track what's actually being used — because a deal that doesn't stick isn't really a win.</p>
-    </div>
+  <div class="approach-grid stagger reveal">
+    <div class="approach-card" style="--i:0"><div class="approach-num">01</div><h3>Understand what the other person is actually dealing with.</h3><p>Their workflow, their frustrations, what success would genuinely look like for them specifically. Not what the brochure says they need. I run a structured discovery session before I say anything about a solution.</p></div>
+    <div class="approach-card" style="--i:1"><div class="approach-num">02</div><h3>Build something small that proves the idea works in their context.</h3><p>A proof-of-concept tailored to their specific problem. Something they can see and react to. When someone can see it working for their situation, the conversation changes completely.</p></div>
+    <div class="approach-card" style="--i:2"><div class="approach-num">03</div><h3>Close the deal and stay involved through onboarding.</h3><p>That's where adoption either happens or quietly dies. The goal was never a closed deal. The goal is a client who is genuinely better off than before we spoke and the numbers show that.</p></div>
   </div>
 </section>
  
-<!-- PROOF -->
-<section class="proof-section" id="proof">
+<!-- WHAT I THINK -->
+<section class="think-section" id="think">
+  <!-- Rose botanical leaves right -->
+  <svg style="position:absolute;top:0;right:-10px;width:220px;height:100%;pointer-events:none;z-index:0;opacity:0.07;" viewBox="0 0 220 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMid meet">
+    <path d="M180 0 Q175 175 180 350 Q185 525 180 700" stroke="#CE1F6A" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M180 100 Q148 80 126 62 Q114 52 114 42 Q132 55 154 74 Q168 87 180 100Z" fill="#CE1F6A"/>
+    <path d="M180 100 Q212 80 216 62 Q218 52 215 42 Q208 55 196 74 Q185 87 180 100Z" fill="#CE1F6A"/>
+    <path d="M180 250 Q148 230 126 212 Q114 202 114 192 Q132 205 154 224 Q168 237 180 250Z" fill="#CE1F6A"/>
+    <path d="M180 250 Q212 230 216 212 Q218 202 215 192 Q208 205 196 224 Q185 237 180 250Z" fill="#CE1F6A"/>
+    <path d="M180 400 Q148 380 126 362 Q114 352 114 342 Q132 355 154 374 Q168 387 180 400Z" fill="#CE1F6A"/>
+    <path d="M180 400 Q212 380 216 362 Q218 352 215 342 Q208 355 196 374 Q185 387 180 400Z" fill="#CE1F6A"/>
+    <path d="M180 550 Q148 530 126 512 Q114 502 114 492 Q132 505 154 524 Q168 537 180 550Z" fill="#CE1F6A"/>
+    <path d="M180 550 Q212 530 216 512 Q218 502 215 492 Q208 505 196 524 Q185 537 180 550Z" fill="#CE1F6A"/>
+    <g transform="translate(180,20)"><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#CE1F6A" transform="rotate(0)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#CE1F6A" transform="rotate(72)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#CE1F6A" transform="rotate(144)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#CE1F6A" transform="rotate(216)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#CE1F6A" transform="rotate(288)"/><circle cx="0" cy="0" r="3" fill="#CE1F6A"/></g>
+  </svg>
+  <!-- Rose wave left side -->
+  <svg style="position:absolute;top:0;left:0;width:80px;height:100%;pointer-events:none;z-index:0;opacity:0.05;" viewBox="0 0 80 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMid meet">
+    <path d="M40 0 Q60 50 40 100 Q20 150 40 200 Q60 250 40 300 Q20 350 40 400 Q60 450 40 500 Q20 550 40 600 Q60 650 40 700" stroke="#CE1F6A" stroke-width="2" fill="none"/>
+    <path d="M20 0 Q40 60 20 120 Q0 180 20 240 Q40 300 20 360 Q0 420 20 480 Q40 540 20 600 Q0 660 20 700" stroke="#CE1F6A" stroke-width="1.2" fill="none" opacity="0.5"/>
+  </svg>
+ 
   <div class="reveal">
-    <div class="section-eyebrow">Real Wins</div>
-    <h2 class="section-h">Three moments<br>that define how I work.</h2>
-    <p class="section-lead">
-      Not highlights from a resume. The actual stories behind the numbers.
-    </p>
+    <div class="section-eyebrow">What I Think</div>
+    <h2 class="section-h">A few honest takes<br>on this kind of work.</h2>
+    <p class="section-lead">Not LinkedIn hot-takes. Just things I've come to believe after three years of actually doing this.</p>
   </div>
-  <div class="proof-grid stagger reveal">
-    <div class="proof-card" style="--i:0">
-      <span class="proof-tag">AI Adoption</span>
-      <div class="proof-stat"><span>3+</span></div>
-      <h3>I built AI demos that nobody asked me to build — and they became our best sales tool.</h3>
-      <p>At IndiaNIC, I noticed prospects were curious about AI but couldn't picture it in their world. So I started building custom proof-of-concepts before any meeting — tailored to each client's industry. Those demos converted skeptical leads into qualified pipelines across healthcare, education, and logistics.</p>
-    </div>
-    <div class="proof-card" style="--i:1">
-      <span class="proof-tag">Enterprise Deals</span>
-      <div class="proof-stat">$<span>114</span>K+</div>
-      <h3>Closed deals across the US and Europe without ever meeting a single client in person.</h3>
-      <p>Every relationship was built through video calls, live demos, and consistent follow-through. I learned to read the room remotely — to identify who the real decision-maker was, what they were afraid of, and what would make them feel confident enough to sign.</p>
-    </div>
-    <div class="proof-card" style="--i:2">
-      <span class="proof-tag">Higher Education</span>
-      <div class="proof-stat"><span>100</span>%</div>
-      <h3>Every client we onboarded actually adopted the technology. Every single one.</h3>
-      <p>That 100% onboarding rate didn't happen by accident. It happened because I built feedback loops from day one, ran training sessions with end users, and stayed involved long after most salespeople would have moved on. The deal only feels real when the client is getting value.</p>
-    </div>
+  <div class="think-grid stagger reveal">
+    <div class="think-card" style="--i:0"><div class="think-topic">On why AI projects fail</div><p>Organisations buy AI tools the way people buy gym memberships. Every intention of using them. Then life gets in the way. <strong>It's never a technology problem. It's a change problem.</strong> The tool works. The people around it don't change. What's missing isn't better software, it's someone who understands both the technology and the people well enough to make them meet in the middle.</p></div>
+    <div class="think-card" style="--i:1"><div class="think-topic">On cold outreach</div><p>Cold outreach fails because it's generic, not because it's cold. When a message references something specific about your business, a recent hire, a product launch, a problem your industry is struggling with publicly, <strong>it stops feeling like outreach and starts feeling like a conversation.</strong> I built a 12% response rate on nothing more complicated than actually doing the research before hitting send.</p></div>
+    <div class="think-card" style="--i:2"><div class="think-topic">On when a deal actually closes</div><p>The signature on a contract is not the close. <strong>The close is three months later when a team has changed how they work and can't imagine going back.</strong> Everything before that is just paperwork. I built my entire process around what happens after the signature because that's where the real result either appears or doesn't.</p></div>
+    <div class="think-card" style="--i:3"><div class="think-topic">On having a technical background in sales</div><p>When I'm in a room with a CTO and a CFO at the same time, I can have a real conversation with both of them. I understand what the CTO is worried about technically and what the CFO needs to justify the investment commercially. <strong>Being able to speak both languages means deals move faster</strong> and fewer things get lost between the business side and the engineering side.</p></div>
   </div>
 </section>
  
-<!-- WHAT EXCITES ME -->
-<section class="excites-section" id="excites">
+<!-- WHAT I DO -->
+<section class="skills-section" id="skills">
+  <!-- Pink cherry blossom branch top-right -->
+  <svg style="position:absolute;top:20px;right:0;width:320px;height:300px;pointer-events:none;z-index:0;opacity:0.09;" viewBox="0 0 320 300" xmlns="http://www.w3.org/2000/svg">
+    <path d="M320 15 Q258 48 210 105 Q172 152 160 210" stroke="#FF0063" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M238 72 Q205 50 175 40 Q156 34 140 36" stroke="#FF0063" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M195 135 Q220 115 248 106 Q267 99 282 96" stroke="#FF0063" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <g transform="translate(138,38)"><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#FF0063" transform="rotate(0)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#FF0063" transform="rotate(72)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#FF0063" transform="rotate(144)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#FF0063" transform="rotate(216)"/><ellipse cx="0" cy="-8" rx="3.5" ry="6.5" fill="#FF0063" transform="rotate(288)"/><circle cx="0" cy="0" r="3" fill="#FF0063"/></g>
+    <g transform="translate(178,42)"><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(36)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(108)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(180)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(252)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(324)"/><circle cx="0" cy="0" r="2.8" fill="#FF0063"/></g>
+    <g transform="translate(283,98)"><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(0)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(72)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(144)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(216)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="#FF0063" transform="rotate(288)"/><circle cx="0" cy="0" r="2.8" fill="#FF0063"/></g>
+    <ellipse cx="198" cy="54" rx="2.5" ry="4" fill="#FF0063" transform="rotate(20,198,54)" opacity="0.6"/>
+    <ellipse cx="218" cy="122" rx="2.5" ry="4" fill="#FF0063" transform="rotate(-18,218,122)" opacity="0.5"/>
+  </svg>
+  <!-- Pink mandala bottom-left -->
+  <svg style="position:absolute;bottom:-50px;left:-50px;width:260px;height:260px;pointer-events:none;z-index:0;opacity:0.06;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(100,100)">
+      <circle cx="0" cy="0" r="85" stroke="#FF0063" stroke-width="0.8" fill="none"/>
+      <circle cx="0" cy="0" r="65" stroke="#FF0063" stroke-width="1" fill="none"/>
+      <circle cx="0" cy="0" r="45" stroke="#FF0063" stroke-width="1.2" fill="none"/>
+      <circle cx="0" cy="0" r="25" stroke="#FF0063" stroke-width="1.5" fill="none"/>
+      <line x1="0" y1="-85" x2="0" y2="85" stroke="#FF0063" stroke-width="0.5" opacity="0.4"/>
+      <line x1="-85" y1="0" x2="85" y2="0" stroke="#FF0063" stroke-width="0.5" opacity="0.4"/>
+      <line x1="-60" y1="-60" x2="60" y2="60" stroke="#FF0063" stroke-width="0.5" opacity="0.4"/>
+      <line x1="60" y1="-60" x2="-60" y2="60" stroke="#FF0063" stroke-width="0.5" opacity="0.4"/>
+      <ellipse cx="0" cy="-45" rx="4.5" ry="7.5" fill="#FF0063" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-45" rx="4.5" ry="7.5" fill="#FF0063" transform="rotate(45)"/>
+      <ellipse cx="0" cy="-45" rx="4.5" ry="7.5" fill="#FF0063" transform="rotate(90)"/>
+      <ellipse cx="0" cy="-45" rx="4.5" ry="7.5" fill="#FF0063" transform="rotate(135)"/>
+      <ellipse cx="0" cy="-45" rx="4.5" ry="7.5" fill="#FF0063" transform="rotate(180)"/>
+      <ellipse cx="0" cy="-45" rx="4.5" ry="7.5" fill="#FF0063" transform="rotate(225)"/>
+      <ellipse cx="0" cy="-45" rx="4.5" ry="7.5" fill="#FF0063" transform="rotate(270)"/>
+      <ellipse cx="0" cy="-45" rx="4.5" ry="7.5" fill="#FF0063" transform="rotate(315)"/>
+      <circle cx="0" cy="0" r="5" fill="#FF0063"/>
+    </g>
+  </svg>
+ 
   <div class="reveal">
     <div class="section-eyebrow">What I Do</div>
-    <h2 class="section-h">The five things I'm<br>genuinely good at.</h2>
-    <p class="section-lead">
-      Not a list of buzzwords. The actual work I do, and why it matters.
-    </p>
+    <h2 class="section-h">Five things I'm<br>genuinely good at.</h2>
+    <p class="section-lead">Not a list of buzzwords. The actual work, and what it produces.</p>
   </div>
-  <div class="excites-grid stagger reveal">
-    <div class="excite-card" style="--i:0">
-      <div class="excite-icon">🔄</div>
-      <div>
-        <h3>Technology Adoption Sales</h3>
-        <p>I help organisations move from evaluating a tool to actually using it — across AI, SaaS, and IT services. The gap between "we bought it" and "we use it every day" is where I do my best work.</p>
-      </div>
-    </div>
-    <div class="excite-card" style="--i:1">
-      <div class="excite-icon">🌍</div>
-      <div>
-        <h3>International Business Development</h3>
-        <p>I build pipeline and close deals with clients in the US and Europe through structured outbound, consultative discovery, and relationship-led selling — without warm introductions or a big brand name behind me.</p>
-      </div>
-    </div>
-    <div class="excite-card" style="--i:2">
-      <div class="excite-icon">🤖</div>
-      <div>
-        <h3>AI-Led Pre-Sales</h3>
-        <p>I use AI proof-of-concepts as a sales tool — showing clients exactly what the technology can do for their specific problem before asking them to commit. It removes doubt and shortens the sales cycle.</p>
-      </div>
-    </div>
-    <div class="excite-card" style="--i:3">
-      <div class="excite-icon">📈</div>
-      <div>
-        <h3>Go-To-Market Strategy</h3>
-        <p>I design and run outreach programs, ICP targeting, and multi-channel campaigns that generate qualified pipeline — not just activity. I've used this to build a $485K+ pipeline from scratch.</p>
-      </div>
-    </div>
+  <div class="skills-grid stagger reveal">
+    <div class="skill-card" style="--i:0"><div class="skill-icon">🔄</div><div><h3>Technology Adoption Sales</h3><p>Helping organisations move from evaluating a tool to actually using it across AI, SaaS, and IT services. The gap between "we bought it" and "we use it every day" is where I do my best work.</p></div></div>
+    <div class="skill-card" style="--i:1"><div class="skill-icon">🌍</div><div><h3>International Business Development</h3><p>Building pipeline and closing deals with clients in the US and Europe through structured outbound, consultative discovery, and relationship-led selling without warm introductions.</p></div></div>
+    <div class="skill-card" style="--i:2"><div class="skill-icon">🤖</div><div><h3>AI-Led Pre-Sales</h3><p>Using AI proof-of-concepts as a sales tool showing clients exactly what the technology can do for their specific problem before asking them to commit. It removes doubt and shortens the cycle.</p></div></div>
+    <div class="skill-card" style="--i:3"><div class="skill-icon">📈</div><div><h3>Go-To-Market Strategy</h3><p>Designing and running outreach programs, ICP targeting, and multi-channel campaigns that generate qualified pipeline, not just activity. $485K+ built from scratch this way.</p></div></div>
+    <div class="skill-card" style="--i:4"><div class="skill-icon">🤝</div><div><h3>Stakeholder Engagement</h3><p>Identifying the right decision-makers, building trust across multiple levels of an organisation, and navigating complex buying processes using BANT and MEDDIC frameworks.</p></div></div>
+    <div class="skill-card" style="--i:5"><div class="skill-icon">🏭</div><div><h3>Cross-Industry Experience</h3><p>IT services, SaaS, healthcare technology, fintech, logistics, and edtech. The industries are different but the challenge is always the same, earn trust, show value, drive change.</p></div></div>
   </div>
 </section>
  
 <!-- NUMBERS -->
 <section class="numbers-section" id="numbers">
+  <!-- Lavender constellation: connected star dots -->
+  <svg style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.08;" viewBox="0 0 1400 380" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+    <!-- Constellation lines -->
+    <line x1="80" y1="50" x2="200" y2="110" stroke="#beaee2" stroke-width="0.8" opacity="0.5"/>
+    <line x1="200" y1="110" x2="340" y2="60" stroke="#beaee2" stroke-width="0.8" opacity="0.5"/>
+    <line x1="340" y1="60" x2="480" y2="130" stroke="#beaee2" stroke-width="0.8" opacity="0.5"/>
+    <line x1="480" y1="130" x2="620" y2="40" stroke="#beaee2" stroke-width="0.8" opacity="0.5"/>
+    <line x1="620" y1="40" x2="780" y2="100" stroke="#beaee2" stroke-width="0.8" opacity="0.5"/>
+    <line x1="780" y1="100" x2="920" y2="50" stroke="#beaee2" stroke-width="0.8" opacity="0.5"/>
+    <line x1="920" y1="50" x2="1060" y2="120" stroke="#beaee2" stroke-width="0.8" opacity="0.5"/>
+    <line x1="1060" y1="120" x2="1200" y2="60" stroke="#beaee2" stroke-width="0.8" opacity="0.5"/>
+    <line x1="1200" y1="60" x2="1340" y2="110" stroke="#beaee2" stroke-width="0.8" opacity="0.5"/>
+    <line x1="140" y1="200" x2="280" y2="160" stroke="#beaee2" stroke-width="0.6" opacity="0.4"/>
+    <line x1="280" y1="160" x2="440" y2="220" stroke="#beaee2" stroke-width="0.6" opacity="0.4"/>
+    <line x1="440" y1="220" x2="580" y2="170" stroke="#beaee2" stroke-width="0.6" opacity="0.4"/>
+    <line x1="700" y1="230" x2="860" y2="180" stroke="#beaee2" stroke-width="0.6" opacity="0.4"/>
+    <line x1="860" y1="180" x2="1000" y2="240" stroke="#beaee2" stroke-width="0.6" opacity="0.4"/>
+    <line x1="1000" y1="240" x2="1140" y2="190" stroke="#beaee2" stroke-width="0.6" opacity="0.4"/>
+    <!-- Star dots -->
+    <circle cx="80" cy="50" r="3" fill="#beaee2"/>
+    <circle cx="200" cy="110" r="2.5" fill="#beaee2"/>
+    <circle cx="340" cy="60" r="3.5" fill="#beaee2"/>
+    <circle cx="480" cy="130" r="2.5" fill="#beaee2"/>
+    <circle cx="620" cy="40" r="4" fill="#beaee2"/>
+    <circle cx="780" cy="100" r="2.5" fill="#beaee2"/>
+    <circle cx="920" cy="50" r="3" fill="#beaee2"/>
+    <circle cx="1060" cy="120" r="3.5" fill="#beaee2"/>
+    <circle cx="1200" cy="60" r="2.5" fill="#beaee2"/>
+    <circle cx="1340" cy="110" r="3" fill="#beaee2"/>
+    <circle cx="140" cy="200" r="2.5" fill="#beaee2"/>
+    <circle cx="280" cy="160" r="3" fill="#beaee2"/>
+    <circle cx="440" cy="220" r="2" fill="#beaee2"/>
+    <circle cx="580" cy="170" r="3" fill="#beaee2"/>
+    <circle cx="700" cy="230" r="2.5" fill="#beaee2"/>
+    <circle cx="860" cy="180" r="3.5" fill="#beaee2"/>
+    <circle cx="1000" cy="240" r="2" fill="#beaee2"/>
+    <circle cx="1140" cy="190" r="3" fill="#beaee2"/>
+    <!-- Outer glow dots -->
+    <circle cx="620" cy="40" r="7" fill="#beaee2" opacity="0.2"/>
+    <circle cx="340" cy="60" r="6" fill="#beaee2" opacity="0.2"/>
+    <circle cx="860" cy="180" r="6" fill="#beaee2" opacity="0.2"/>
+    <circle cx="1060" cy="120" r="6" fill="#beaee2" opacity="0.2"/>
+  </svg>
+ 
   <div class="reveal">
     <div class="section-eyebrow">By The Numbers</div>
     <h2 class="section-h" style="color:var(--cream)">The outcomes<br>speak for themselves.</h2>
   </div>
   <div class="numbers-grid stagger reveal">
-    <div class="number-card" style="--i:0">
-      <div class="big-n">$<em>114</em>K+</div>
-      <p>Closed revenue across US &amp; European markets</p>
-    </div>
-    <div class="number-card" style="--i:1">
-      <div class="big-n">$<em>485</em>K+</div>
-      <p>Pipeline built from scratch through outbound and AI-led demos</p>
-    </div>
-    <div class="number-card" style="--i:2">
-      <div class="big-n"><em>5</em></div>
-      <p>International accounts closed across the US &amp; Europe</p>
-    </div>
-    <div class="number-card" style="--i:3">
-      <div class="big-n"><em>3</em>+</div>
-      <p>Industries with live AI proof-of-concept deployments</p>
-    </div>
-    <div class="number-card" style="--i:4">
-      <div class="big-n"><em>0</em>%</div>
-      <p>Churn across all acquired accounts — every client adopted and stayed</p>
-    </div>
+    <div class="number-card" style="--i:0"><div class="big-n">$<em>114</em>K+</div><p>Closed revenue across US &amp; European markets</p></div>
+    <div class="number-card" style="--i:1"><div class="big-n">$<em>485</em>K+</div><p>Pipeline built from scratch through outbound and AI-led demos</p></div>
+    <div class="number-card" style="--i:2"><div class="big-n"><em>12</em>%</div><p>Cold outreach response rate consistently above industry average</p></div>
+    <div class="number-card" style="--i:3"><div class="big-n"><em>3</em>+</div><p>Industries with live AI proof-of-concept deployments</p></div>
+    <div class="number-card" style="--i:4"><div class="big-n"><em>0</em>%</div><p>Churn across all accounts, every client adopted and stayed</p></div>
+    <div class="number-card" style="--i:5"><div class="big-n"><em>260</em></div><p>Participants beaten at HackMerced VII, winning Most Creative Use of Twilio API</p></div>
   </div>
 </section>
  
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
+  <!-- White botanical leaves right -->
+  <svg style="position:absolute;top:0;right:0;width:200px;height:100%;pointer-events:none;z-index:0;opacity:0.09;" viewBox="0 0 200 500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMid meet">
+    <path d="M160 0 Q155 125 160 250 Q165 375 160 500" stroke="white" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+    <path d="M160 80 Q128 60 106 42 Q94 32 94 22 Q112 35 134 54 Q148 67 160 80Z" fill="white"/>
+    <path d="M160 80 Q192 60 196 42 Q198 32 195 22 Q188 35 176 54 Q165 67 160 80Z" fill="white"/>
+    <path d="M160 220 Q128 200 106 182 Q94 172 94 162 Q112 175 134 194 Q148 207 160 220Z" fill="white"/>
+    <path d="M160 220 Q192 200 196 182 Q198 172 195 162 Q188 175 176 194 Q165 207 160 220Z" fill="white"/>
+    <path d="M160 360 Q128 340 106 322 Q94 312 94 302 Q112 315 134 334 Q148 347 160 360Z" fill="white"/>
+    <path d="M160 360 Q192 340 196 322 Q198 312 195 302 Q188 315 176 334 Q165 347 160 360Z" fill="white"/>
+    <g transform="translate(160,20)"><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="white" transform="rotate(0)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="white" transform="rotate(72)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="white" transform="rotate(144)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="white" transform="rotate(216)"/><ellipse cx="0" cy="-7" rx="3" ry="5.5" fill="white" transform="rotate(288)"/><circle cx="0" cy="0" r="3" fill="white"/></g>
+  </svg>
+  <!-- White mandala bottom-left -->
+  <svg style="position:absolute;bottom:-50px;left:-30px;width:280px;height:280px;pointer-events:none;z-index:0;opacity:0.09;" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(100,100)">
+      <circle cx="0" cy="0" r="85" stroke="white" stroke-width="0.8" fill="none"/>
+      <circle cx="0" cy="0" r="64" stroke="white" stroke-width="1" fill="none"/>
+      <circle cx="0" cy="0" r="43" stroke="white" stroke-width="1.2" fill="none"/>
+      <circle cx="0" cy="0" r="22" stroke="white" stroke-width="1.5" fill="none"/>
+      <line x1="0" y1="-85" x2="0" y2="85" stroke="white" stroke-width="0.5" opacity="0.4"/>
+      <line x1="-85" y1="0" x2="85" y2="0" stroke="white" stroke-width="0.5" opacity="0.4"/>
+      <line x1="-60" y1="-60" x2="60" y2="60" stroke="white" stroke-width="0.5" opacity="0.4"/>
+      <line x1="60" y1="-60" x2="-60" y2="60" stroke="white" stroke-width="0.5" opacity="0.4"/>
+      <ellipse cx="0" cy="-43" rx="4.5" ry="7" fill="white" transform="rotate(0)"/>
+      <ellipse cx="0" cy="-43" rx="4.5" ry="7" fill="white" transform="rotate(45)"/>
+      <ellipse cx="0" cy="-43" rx="4.5" ry="7" fill="white" transform="rotate(90)"/>
+      <ellipse cx="0" cy="-43" rx="4.5" ry="7" fill="white" transform="rotate(135)"/>
+      <ellipse cx="0" cy="-43" rx="4.5" ry="7" fill="white" transform="rotate(180)"/>
+      <ellipse cx="0" cy="-43" rx="4.5" ry="7" fill="white" transform="rotate(225)"/>
+      <ellipse cx="0" cy="-43" rx="4.5" ry="7" fill="white" transform="rotate(270)"/>
+      <ellipse cx="0" cy="-43" rx="4.5" ry="7" fill="white" transform="rotate(315)"/>
+      <circle cx="0" cy="0" r="5" fill="white"/>
+    </g>
+  </svg>
+ 
   <div class="reveal">
     <div class="section-eyebrow">Let's Talk</div>
-    <h2 class="contact-h">Ready when you are.</h2>
-    <p class="contact-sub">
-      If you're a recruiter or hiring manager looking for someone who can sell technology and drive real adoption — not just close and disappear — I'd love to talk. I'm particularly interested in roles focused on AI adoption, go-to-market strategy, and international sales.
-    </p>
+    <h2 class="contact-h">Ready when<br>you are.</h2>
+    <p class="contact-sub">I work at the intersection of technology and human behaviour. If you're thinking about AI adoption, go-to-market, pre-sales, or what makes technology actually stick inside an organisation, that's a conversation I'm always up for.</p>
     <div class="contact-btns">
       <a href="mailto:khatrikrishna822@gmail.com" class="btn btn-white">✉ Email Me</a>
       <a href="https://www.linkedin.com/in/krishna-khatri-0298a41b6/" target="_blank" class="btn btn-ghost">LinkedIn</a>
-      <a href="01KrishnaKhatri2026.pdf" download class="btn btn-ghost">⬇ Download Resume</a>
+      <a href="01KrishnaKhatri2026.pdf" download class="btn btn-ghost">⬇ Resume</a>
     </div>
-    <p class="contact-note">Ahmedabad, India · Open to remote &amp; relocation</p>
+    <p class="contact-note">Ahmedabad, India</p>
   </div>
 </section>
  
@@ -1498,32 +1635,19 @@ k7leIiFQiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiA//9k=" alt="Krishna K
 </footer>
  
 <script>
-  // Custom cursor
   const cursor = document.getElementById('cursor');
   document.addEventListener('mousemove', e => {
     cursor.style.left = e.clientX + 'px';
     cursor.style.top  = e.clientY + 'px';
   });
+  document.querySelectorAll('a,button').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width='28px'; cursor.style.height='28px'; cursor.style.opacity='0.45'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width='10px'; cursor.style.height='10px'; cursor.style.opacity='1'; });
   });
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.width = '28px'; cursor.style.height = '28px'; cursor.style.opacity = '0.5';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.width = '10px'; cursor.style.height = '10px'; cursor.style.opacity = '1';
-    });
-  });
- 
-  // Sticky nav
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  });
- 
-  // Scroll reveal with stagger
+  window.addEventListener('scroll', () => { navbar.classList.toggle('scrolled', window.scrollY > 40); });
   const reveals = document.querySelectorAll('.reveal');
   reveals.forEach(el => el.classList.add('js-reveal'));
- 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1537,7 +1661,6 @@ k7leIiFQiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiAIiIAiIgCIiA//9k=" alt="Krishna K
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
- 
   reveals.forEach(el => observer.observe(el));
 </script>
 </body>
